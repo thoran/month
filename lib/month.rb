@@ -1,7 +1,7 @@
 # Month
 
-# 20061001
-# 0.0.6
+# 20061002
+# 0.1.0
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -10,15 +10,14 @@
 # History: The beginnings of this were derived from some code from susy.rb.  
 
 # Changes: 
-# 1. Ruby didn't like my use of two regexes in the when part of the case, so given that I have some further checks against the class variables, I Decided it was 'safe' (and consistent) with the result already expected to dispense with one of the regexes from each when.  
-# 2. Actually what it didn't like was the excess end at the end of the second when in self#to_long.  
-# 3. I neglected to require 'date'.  
-# 4. I'd left out some short month names in self#to_short.  I'm surprised there weren't more errors from testing.  I know: once a test fails, no further assertions are attempted!  
-# 5. In self#days, I'd forgotten to test for where a month was provided as a number as a string, so I added the tests to_num(1).to_s...to_num(12).to_s into each of the when clauses of self#days.  I was considering adding in the method to_num_as_string, but Decided that it wasn't necessary.  Hmm...  
-# 6. I now test for the capitalized version of month against the list of valid month names.  
-# 7. I also Decided to alter all the downcases to capitalizations.  
-# 8. In self#days I now stingify and capitalize the variable in the case statement, since the expectation is there that the returned value will be capitalized.  And, why was this working before?...  
-# 9. I now no longer need the non-to_s version of the test in self#days for a number, since it is now stringified.  
+# 1. I added the method dates which returns the dates for which it is a certain day.  
+# 2. As I was doing this I added an alias method #date, since #day and #mday don't seem very satisfying (even if it appears (too?) confusing)...  And yet I haven't used it!  Yet.  
+
+class Date
+  
+  alias_method :date, :mday
+  
+end
 
 class Month
   
@@ -185,6 +184,22 @@ class Month
   
   def self.days_in_month(month, year = Date.today.year)
     self.days(month, year)
+  end
+  
+  def self.dates(day, month = Date.today.month, year = Date.today.year)
+    day = day.capitalize
+    list_of_dates = []
+    Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
+      case date.wday
+        when 0; 'Sunday' == day ? list_of_dates << date.mday
+        when 1; 'Monday' == day ? list_of_dates << date.mday
+        when 2; 'Tuesday' == day ? list_of_dates << date.mday
+        when 3; 'Wednesday' == day ? list_of_dates << date.mday
+        when 4; 'Thursday' == day ? list_of_dates << date.mday
+        when 5; 'Friday' == day ? list_of_dates << date.mday
+        when 6; 'Saturday' == day ? list_of_dates << date.mday
+    end
+    return list_of_dates
   end
   
 end
