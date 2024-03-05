@@ -7,7 +7,7 @@ require 'Month/to_num'
 
 class Month
   class << self
-    
+
     def days(*args)
       year, month = (
         case args.size
@@ -26,6 +26,6 @@ class Month
         nil
       end
     end
-    
+
   end
 end

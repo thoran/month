@@ -6,8 +6,8 @@ require 'Month/Constants'
 
 class Month
   class << self
-    
+
     alias_method :to_i, :to_num
-    
+
   end
 end

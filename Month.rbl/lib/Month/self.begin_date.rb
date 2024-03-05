@@ -5,7 +5,7 @@ require 'date'
 
 class Month
   class << self
-    
+
     def begin_date(*args)
       year, month = (
         case args.size
@@ -18,6 +18,6 @@ class Month
       fail unless (1..12).include?(month)
       Date.new(year, month, 1)
     end
-    
+
   end
 end

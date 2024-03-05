@@ -6,7 +6,7 @@ require 'Month/initialize'
 
 class Month
   class << self
-    
+
     def of(*args)
       year, month = (
         case args.size
@@ -32,6 +32,6 @@ class Month
       else; nil
       end
     end
-    
+
   end
 end

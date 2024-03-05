@@ -6,7 +6,7 @@ require 'Month/initialize'
 
 class Month
   class << self
-    
+
     def next(*args)
       year, month = (
         case args.size
@@ -23,6 +23,6 @@ class Month
         Month.new(year, month + 1)
       end
     end
-    
+
   end
 end

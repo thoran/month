@@ -9,7 +9,7 @@ require 'Month/self.days'
 
 class Month
   class << self
-    
+
     def dates(*args)
       options = args.extract_options!
       year, month = (
@@ -49,6 +49,6 @@ class Month
       end
       list_of_dates
     end
-    
+
   end
 end

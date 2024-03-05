@@ -5,8 +5,8 @@ require 'Month/self.finish_date'
 
 class Month
   class << self
-    
+
     alias_method :finish_of_month, :finish_date
-    
+
   end
 end

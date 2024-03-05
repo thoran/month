@@ -5,8 +5,8 @@ require 'Month/self.prev'
 
 class Month
   class << self
-    
+
     alias_method :prior_month, :prev
-    
+
   end
 end

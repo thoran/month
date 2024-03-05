@@ -4,7 +4,7 @@
 require 'Month/days'
 
 class Month
-  
+
   alias_method :days_in_month, :days
-  
+
 end

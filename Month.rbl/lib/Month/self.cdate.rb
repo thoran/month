@@ -6,7 +6,7 @@ require 'Month/self.cdates'
 
 class Month
   class << self
-    
+
     def cdate(which_day, day, *args)
       year, month = (
         case args.size
@@ -31,6 +31,6 @@ class Month
       else; nil
       end
     end
-    
+
   end
 end

@@ -6,10 +6,10 @@ require 'Month/initialize'
 
 class Month
   class << self
-    
+
     def this
       Month.new(Date.today.month)
     end
-    
+
   end
 end

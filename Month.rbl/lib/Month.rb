@@ -2,7 +2,7 @@
 # Month
 
 # 20191013
-# 0.9.6
+# 0.9.7
 
 # Description: Month does conversions of various formats for the representation of months and can when instantiated represent a specific month in time.
 
@@ -57,6 +57,10 @@
 # 40. + Month#last_year, after it was sitting in a file MonthPlus.rb for years.
 # 41. + Month#next_year, after it was sitting in a file MonthPlus.rb for years.
 # 42. + Date#to_month, after it was sitting in a file MonthPlus.rb for years.
+# 6/7
+# 43. Removed date and version info from Month#last_year, #next_year, and #to_month, not least of which because it was wrong (at 0.9.1) anyway.
+# 44. + Month.last_year
+# 45. + Month.next_year
 
 lib_dir = File.expand_path(File.join(File.dirname(__FILE__)))
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)

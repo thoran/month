@@ -4,9 +4,9 @@
 require 'Month/initialize'
 
 class Month
-  
+
   def self.today
     new
   end
-  
+
 end

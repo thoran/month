@@ -5,8 +5,8 @@ require 'Month/self.begin_date'
 
 class Month
   class << self
-    
+
     alias_method :start_date, :begin_date
-    
+
   end
 end

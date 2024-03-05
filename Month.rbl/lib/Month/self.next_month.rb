@@ -5,8 +5,8 @@ require 'Month/self.next'
 
 class Month
   class << self
-    
+
     alias_method :next_month, :next
-    
+
   end
 end

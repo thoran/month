@@ -6,7 +6,7 @@ require 'Month/Constants'
 
 class Month
   class << self
-    
+
     def to_num(month = Date.today.month)
       if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); i + 1
       elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); i + 1
@@ -15,6 +15,6 @@ class Month
       else; nil
       end
     end
-    
+
   end
 end

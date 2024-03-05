@@ -4,7 +4,7 @@
 require 'Month/self.dates'
 
 class Month
-  
+
   def method_missing(method_name, *args, &block)
     case method_name.to_s
     when /^((m|M)o)|((m|M)on)(day|days)*$/; Month.dates(year, month, :day => 'Monday')
@@ -17,5 +17,5 @@ class Month
     else; super(method_name, *args, &block)
     end
   end
-  
+
 end

@@ -5,8 +5,8 @@ require 'Month/self.day'
 
 class Month
   class << self
-    
+
     alias_method :day_long, :day
-    
+
   end
 end
