@@ -1,7 +1,7 @@
 # Month
 
 # 20061004
-# 0.5.1
+# 0.5.2
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to do the conversions.  
 
@@ -13,9 +13,10 @@
 # 2. Added a default to self#days (and self#days_in_month) which allows the number of days in the current month to be returned as the default.  
 # 3. Did the same (added a default) for self#to_long, #to_short, #to_num, and #to_number.  
 # 4. Added self#date and self#cdate, which returns a single date based on an ordinal day, such as the 'First Monday', or 'Third Friday.  
+# 5. Added more options to self#date and self#cdate inputs and combined some equivalent ones.  
 
 # Todo: 
-# 1. It isn't essential that this be done, but it might be nice to acknowledge that self#cdates does not need to check whether the input day is a Fixnum or not, since it is using ISO day representation and there is no zero value as it starts at 1.  
+# 1. It isn't essential that this be done, but it might be nice to acknowledge that self#cdates does not need to check whether the input day is a Fixnum or not, since it is using ISO day representation and there is no zero value as it starts at 1, it means that non-numeric strings will not convert to zero.  I could also consider using #to_str inside a begin-end block or something like that...  
 # 2. I might consider creating a MONTH_NUMBERS_AS_STRINGS constant, which might save a few cycles here and there.  
 # 3. Write tests for the default values for month for the following methods: 
 #   self#days; 
@@ -24,6 +25,9 @@
 #   self#to_short; 
 #   self#to_num; 
 #   self#to_number.  
+# 4. Write tests for: 
+#   self#date; 
+#   self#cdate.  
 
 class Month
   
@@ -156,18 +160,16 @@ class Month
   
   def self.date(which_day, day, month = Date.today.month, year = Date.today.year)
     all = self.dates(day, month, year)
-    case which_day.downcase
-      when 'first'; return all[0]
-      when 'second'; return all[1]
-      when 'third'; return all[2]
-      when 'fourth'; return all[3]
-      when 'fifth'; return all[4]
-      when 'last'; return all[all.size - 1]
-      when 'second last'; return all[all.size - 2]
-      when 'third last'; return all[all.size - 3]
-      when 'fourth last'; return all[all.size - 4]
-      when 'penultimate'; return all[all.size - 2]
-      when 'ultimate'; return all[all.size - 1]
+    case which_day.to_s.downcase
+      when 'first', '1st', '1'; return all[0]
+      when 'second', '2nd', '2'; return all[1]
+      when 'third', '3rd', '3'; return all[2]
+      when 'fourth', '4th', '4'; return all[3]
+      when 'fifth', '5th', '5'; return all[4]
+      when 'last', 'ultimate'; return all[all.size - 1]
+      when 'second last', '2nd last', 'penultimate'; return all[all.size - 2]
+      when 'third last', '3rd last'; return all[all.size - 3]
+      when 'fourth last, 4th last'; return all[all.size - 4]
       else; return nil
     end
   end
@@ -175,17 +177,15 @@ class Month
   def self.cdate(which_day, day, month = Date.today.month, year = Date.today.year)
     all = self.cdates(day, month, year)
     case which_day.downcase
-      when 'first'; return all[0]
-      when 'second'; return all[1]
-      when 'third'; return all[2]
-      when 'fourth'; return all[3]
-      when 'fifth'; return all[4]
-      when 'last'; return all[all.size - 1]
-      when 'second last'; return all[all.size - 2]
-      when 'third last'; return all[all.size - 3]
-      when 'fourth last'; return all[all.size - 4]
-      when 'penultimate'; return all[all.size - 2]
-      when 'ultimate'; return all[all.size - 1]
+      when 'first', '1st', '1'; return all[0]
+      when 'second', '2nd', '2'; return all[1]
+      when 'third', '3rd', '3'; return all[2]
+      when 'fourth', '4th', '4'; return all[3]
+      when 'fifth', '5th', '5'; return all[4]
+      when 'last', 'ultimate'; return all[all.size - 1]
+      when 'second last', '2nd last', 'penultimate'; return all[all.size - 2]
+      when 'third last', '3rd last'; return all[all.size - 3]
+      when 'fourth last, 4th last'; return all[all.size - 4]
       else; return nil
     end
   end
