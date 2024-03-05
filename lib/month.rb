@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.11
+# 0.4.0
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -9,22 +9,7 @@
 # 1. Some of the later methods might be better moved to Date or another class...  
 
 # Changes: 
-# 1. I realized that the index of the class constants was the same as the numeric value for the months and that this provided the opportunity for vastly reducing the length of this code...  This is much shorter and much more Ruby-like!  
-# 2. Tests were failing because I forgot to account for zero-base indexed arrays!  
-# 3. I wondering whether the employment of elsif and an explicit else clause would help at all...  
-# 4. I thought I'd apply the same sorts of changes to month lookups to day lookups...  
-# 5. Producing some interesting attempts at consolidating the code.  See particularly MONTH_DAYS and self#days.  
-# 6. I somehow knew that I couldn't call a number...  
-# 7. self#days needs to check for dud data since a nil will be returned from the to_num lookup in that case...  
-# 8. I put an explicit return nil into self#days.  Not necessary, but a little clearer.  
-# 9. self#day now accepts short, long, and num_as_string values for the month parameter.  
-# 10. self#day is also much compressed by employing an array lookup.  
-# 11. self#day_short and self#wday are also now similarly compressed.  
-# 12. self#day_short and self#wday now also accept short, long, and num_as_string values for the month parameter.  
-# 13. Compressed self#day, self#day_short, and self#wday by using some assignment kung-fu.  
-# 14. Finally figured out how to compress self#dates in a manner similar to all the other methods---and by using another of Month's class methods too!  So they must be useful!  Although self#dates could still do with a little bit of a tidy-up...  
-# 15. self#dates looks better now.  I've managed to replace both the test and conversions into a single section of code.  
-# 16. And now it actually works!  
+# 1. Added self#cdates which uses ISO representation of numeric weekdays; where 7 = Sunday, rather than 0 = Sunday.  
 
 class Month
   
@@ -41,7 +26,8 @@ class Month
   ISO_8601_DAY_NAMES_LONG = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
   ISO_8601_DAY_NAMES_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   ISO_8601_WEEK_DAY_NUMBERS = 1..7
-  
+  ISO_8601_WEEK_DAY_NUMBERS_AS_STRINGS = '1'..'7'
+
   DAY_NAMES_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   DAY_NAMES_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   WEEK_DAY_NUMBERS = 0..6
@@ -142,6 +128,26 @@ class Month
     else
       return nil
     end
+  end
+  
+  def self.cdates(day, month = Date.today.month, year = Date.today.year)
+    month = self.to_num(month)
+    if e = DAY_NAMES_LONG.to_a.index(day.to_s.capitalize)
+      weekday_number = e
+    elsif e = DAY_NAMES_SHORT.to_a.index(day.to_s.capitalize)
+      weekday_number = e 
+    elsif ISO_8601_WEEK_DAY_NUMBERS_AS_STRINGS.to_a.member?(day)
+      weekday_number = day.to_i
+    elsif ISO_8601_WEEK_DAY_NUMBERS.to_a.member?(day.to_i) && day.class == Fixnum
+      weekday_number = day.to_i
+    else
+      return nil
+    end
+    list_of_dates = []
+    Date.new(year, month, 1).upto(Date.new(year, month, self.days(month, year))) do |date|
+      list_of_dates << date.mday if date.cwday == weekday_number
+    end
+    return list_of_dates
   end
   
 end
