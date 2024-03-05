@@ -1,10 +1,7 @@
 # tc_Month_self.day_short
 
-# 20110702
-# 0.7.0
-
-# Changes: 
-# 1. Bumped version number to correspond with Month's overall version number.  
+# 20110707
+# 0.8.0
 
 require 'Month/self.day_short'
 

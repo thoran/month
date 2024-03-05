@@ -1,7 +1,7 @@
 # tc_Month_self.last
 
-# 20110704
-# 0.7.0
+# 20110706
+# 0.8.0
 
 require 'date'
 require 'Month'
@@ -25,6 +25,30 @@ class TC_Month_self_last < Test::Unit::TestCase
     when 11; assert_equal Month.new(10).month, Month.last.month
     when 12; assert_equal Month.new(11).month, Month.last.month
     end
+  end
+  
+  def test_self_last_with_month_argument
+    today = Date.today
+    case today.month
+    when 1; assert_equal Month.new(12, today.year - 1).month, Month.last(1).month
+    when 2; assert_equal Month.new(1).month, Month.last(2).month
+    when 3; assert_equal Month.new(2).month, Month.last(3).month
+    when 4; assert_equal Month.new(3).month, Month.last(4).month
+    when 5; assert_equal Month.new(4).month, Month.last(5).month
+    when 6; assert_equal Month.new(5).month, Month.last(6).month
+    when 7; assert_equal Month.new(6).month, Month.last(7).month
+    when 8; assert_equal Month.new(7).month, Month.last(8).month
+    when 9; assert_equal Month.new(8).month, Month.last(9).month
+    when 10; assert_equal Month.new(9).month, Month.last(10).month
+    when 11; assert_equal Month.new(10).month, Month.last(11).month
+    when 12; assert_equal Month.new(11).month, Month.last(12).month
+    end
+  end
+  
+  def test_self_last_with_month_and_year_argument
+    assert_equal Month.new(12, 2010), Month.last(1, 2011)
+    assert_equal Month.new(11, 2011), Month.last(12, 2011)
+    assert_equal Month.new(10, 2012), Month.last(11, 2012)
   end
   
 end

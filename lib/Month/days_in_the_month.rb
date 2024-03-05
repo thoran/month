@@ -1,8 +1,8 @@
 # Month/days_in_month
 # Month#days_in_month
 
-# 20100704
-# 0.7.0
+# 20100706
+# 0.8.0
 
 require 'Month/days'
 

@@ -1,22 +1,20 @@
 # Month/self.last
 # Month.last
 
-# 20110704
-# 0.7.0
+# 20110705
+# 0.8.0
 
 # Changes: 
-# 1. Bumped version number to correspond with Month's overall version number.  
-
-require 'Month/self.this'
+# 1.
 
 class Month
   class << self
     
-    def last
-      if Month.this.to_num == 1
-        Month.new(12, Date.today.year - 1)
+    def last(month = Date.today.month, year = Date.today.year)
+      if month == 1
+        Month.new(12, year - 1)
       else
-        Month.new(Date.today.month - 1)
+        Month.new(month - 1, year)
       end
     end
     

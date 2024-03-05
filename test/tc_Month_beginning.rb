@@ -1,9 +1,10 @@
 # tc_Month_beginning
 
-# 20110702
-# 0.7.0
+# 20110706, 07
+# 0.8.0
 
 require 'date'
+require 'Month'
 require 'Month/beginning'
 
 class TC_Month_beginning < Test::Unit::TestCase

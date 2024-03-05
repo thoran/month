@@ -1,13 +1,11 @@
 # tc_Month_self.of
 
-# 20110704
-# 0.7.0
+# 20110707
+# 0.8.0
 
-# Changes: 
-# 1. Bumped version number to correspond with Month's overall version number.  
-
+require 'Month'
 require 'Month/self.of'
-require 'Month/equivalence'
+require 'Month/comparator'
 
 class TC_Month_self_of < Test::Unit::TestCase
   

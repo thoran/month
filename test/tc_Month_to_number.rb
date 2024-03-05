@@ -1,8 +1,9 @@
 # tc_Month_to_number
 
-# 20110702
-# 0.7.0
+# 20110706, 07
+# 0.8.0
 
+require 'Month'
 require 'Month/to_number'
 
 class TC_Month_to_number < Test::Unit::TestCase

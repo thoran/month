@@ -1,14 +1,16 @@
-# Month/end
-# Month#end
+# Month/finish
+# Month#finish
 
-# 20110702
-# 0.7.0
+# 20110707
+# 0.8.0
 
-# Changes: 
-# 1. Bumped version number to correspond with Month's overall version number.  
+require 'Month'
+require 'Month/self.finish'
 
 class Month
   
-  alias_method :finish, :end
+  def finish
+    Month.finish(@month, @year)
+  end
   
 end

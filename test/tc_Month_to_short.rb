@@ -3,6 +3,7 @@
 # 20110702
 # 0.7.0
 
+require 'Month'
 require 'Month/to_short'
 
 class TC_Month_to_short < Test::Unit::TestCase

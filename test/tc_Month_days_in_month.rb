@@ -1,7 +1,7 @@
 # tc_Month_days_in_month
 
-# 20110702
-# 0.7.0
+# 20110707
+# 0.8.0
 
 require 'Month/days_in_month'
 

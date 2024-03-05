@@ -1,21 +1,17 @@
 # Month/self.date
 # Month.date
 
-# 20100702, 04
-# 0.7.0
-
-# Changes since 0.6: 
-# 1. Split to it's own file.  
-# 2. /'fourth last , 4th last'/'fourth last', '4th last'/.  
+# 20100706
+# 0.8.0
 
 require 'date'
-require 'Month/self.cdates'
+require 'Month/self.dates'
 
 class Month
   class << self
     
     def date(which_day, day, month = Date.today.month, year = Date.today.year)
-      all = self.dates(day, month, year)
+      all = self.dates(month, year, :day => day)
       case which_day.to_s.downcase
       when 'first', '1st', '1'; return all[0]
       when 'second', '2nd', '2'; return all[1]

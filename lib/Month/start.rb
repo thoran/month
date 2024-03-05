@@ -1,11 +1,16 @@
 # Month/start
 # Month#start
 
-# 20110704
-# 0.7.0
+# 20110707
+# 0.8.0
+
+require 'Month'
+require 'Month/self.start'
 
 class Month
   
-  alias_method :start, :beginning
+  def start
+    Month.start(@month, @year)
+  end
   
 end

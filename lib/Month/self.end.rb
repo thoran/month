@@ -1,11 +1,8 @@
 # Month/self.end
 # Month.end
 
-# 20110702
-# 0.7.0
-
-# Changes: 
-# 1. Added a more typical interface which has month and year in it, with defauls as per most other Month class methods.  
+# 20110706
+# 0.8.0
 
 require 'date'
 require 'Month/self.days'

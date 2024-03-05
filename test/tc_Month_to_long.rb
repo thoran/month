@@ -1,8 +1,9 @@
 # tc_Month_to_long
 
-# 20110702
-# 0.7.0
+# 20110707
+# 0.8.0
 
+require 'Month'
 require 'Month/to_long'
 
 class TC_Month_to_long < Test::Unit::TestCase

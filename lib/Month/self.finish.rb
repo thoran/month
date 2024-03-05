@@ -1,8 +1,8 @@
 # Month/self.finish
 # Month.finish
 
-# 20110702
-# 0.7.0
+# 20110707
+# 0.8.0
 
 require 'Month/self.end'
 

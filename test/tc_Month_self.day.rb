@@ -1,10 +1,7 @@
 # tc_Month_self.day
 
-# 20110702
-# 0.7.0
-
-# Changes: 
-# 1. Bumped version number to correspond with Month's overall version number.  
+# 20110707
+# 0.8.0
 
 require 'Month/self.day'
 
@@ -79,7 +76,81 @@ class TC_Month_self_day < Test::Unit::TestCase
     assert_equal 'Tuesday', Month.day('31', '10', '2006')
     assert_equal 'Wednesday', Month.day('1', '11', '2006')
   end
-
+  
+  def test_num_as_num
+    if Date.today.year == 2006 || Date.today.year == 1992 || Date.today.year == 2020
+      assert_equal 'Sunday', Month.day(1, 10)
+      assert_equal 'Monday', Month.day(2, 10)
+      assert_equal 'Tuesday', Month.day(3, 10)
+      assert_equal 'Wednesday', Month.day(4, 10)
+      assert_equal 'Thursday', Month.day(5, 10)
+      assert_equal 'Friday', Month.day(6, 10)
+      assert_equal 'Saturday', Month.day(7, 10)
+      assert_equal 'Sunday', Month.day(8, 10)
+      assert_equal 'Monday', Month.day(9, 10)
+      assert_equal 'Tuesday', Month.day(10, 10)
+      assert_equal 'Wednesday', Month.day(11, 10)
+      assert_equal 'Thursday', Month.day(12, 10)
+      assert_equal 'Friday', Month.day(13, 10)
+      assert_equal 'Saturday', Month.day(14, 10)
+      assert_equal 'Sunday', Month.day(15, 10)
+      assert_equal 'Monday', Month.day(16, 10)
+      assert_equal 'Tuesday', Month.day(17, 10)
+      assert_equal 'Wednesday', Month.day(18, 10)
+      assert_equal 'Thursday', Month.day(19, 10)
+      assert_equal 'Friday', Month.day(20, 10)
+      assert_equal 'Saturday', Month.day(21, 10)
+      assert_equal 'Sunday', Month.day(22, 10)
+      assert_equal 'Monday', Month.day(23, 10)
+      assert_equal 'Tuesday', Month.day(24, 10)
+      assert_equal 'Wednesday', Month.day(25, 10)
+      assert_equal 'Thursday', Month.day(26, 10)
+      assert_equal 'Friday', Month.day(27, 10)
+      assert_equal 'Saturday', Month.day(28, 10)
+      assert_equal 'Sunday', Month.day(29, 10)
+      assert_equal 'Monday', Month.day(30, 10)
+      assert_equal 'Tuesday', Month.day(31, 10)
+      assert_equal 'Wednesday', Month.day(1, 11)
+    end
+  end
+  
+  def test_num_as_string
+    if Date.today.year == 2006 || Date.today.year == 1992 || Date.today.year == 2020
+      assert_equal 'Sunday', Month.day('1', '10')
+      assert_equal 'Monday', Month.day('2', '10')
+      assert_equal 'Tuesday', Month.day('3', '10')
+      assert_equal 'Wednesday', Month.day('4', '10')
+      assert_equal 'Thursday', Month.day('5', '10')
+      assert_equal 'Friday', Month.day('6', '10')
+      assert_equal 'Saturday', Month.day('7', '10')
+      assert_equal 'Sunday', Month.day('8', '10')
+      assert_equal 'Monday', Month.day('9', '10')
+      assert_equal 'Tuesday', Month.day('10', '10')
+      assert_equal 'Wednesday', Month.day('11', '10')
+      assert_equal 'Thursday', Month.day('12', '10')
+      assert_equal 'Friday', Month.day('13', '10')
+      assert_equal 'Saturday', Month.day('14', '10')
+      assert_equal 'Sunday', Month.day('15', '10')
+      assert_equal 'Monday', Month.day('16', '10')
+      assert_equal 'Tuesday', Month.day('17', '10')
+      assert_equal 'Wednesday', Month.day('18', '10')
+      assert_equal 'Thursday', Month.day('19', '10')
+      assert_equal 'Friday', Month.day('20', '10')
+      assert_equal 'Saturday', Month.day('21', '10')
+      assert_equal 'Sunday', Month.day('22', '10')
+      assert_equal 'Monday', Month.day('23', '10')
+      assert_equal 'Tuesday', Month.day('24', '10')
+      assert_equal 'Wednesday', Month.day('25', '10')
+      assert_equal 'Thursday', Month.day('26', '10')
+      assert_equal 'Friday', Month.day('27', '10')
+      assert_equal 'Saturday', Month.day('28', '10')
+      assert_equal 'Sunday', Month.day('29', '10')
+      assert_equal 'Monday', Month.day('30', '10')
+      assert_equal 'Tuesday', Month.day('31', '10')
+      assert_equal 'Wednesday', Month.day('1', '11')
+    end
+  end
+  
   def test_num_as_num_with_defaults
     if Date.today.year == 2006 && Date.today.month == 10
       assert_equal 'Sunday', Month.day(1)

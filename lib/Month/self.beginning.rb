@@ -1,8 +1,8 @@
 # Month/self.beginning
 # Month.beginning
 
-# 20110704
-# 0.7.0
+# 20110706
+# 0.8.0
 
 require 'date'
 
