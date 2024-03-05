@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.3
+# 0.3.4
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -12,6 +12,8 @@
 # 1. I realized that the index of the class constants was the same as the numeric value for the months and that this provided the opportunity for vastly reducing the length of this code...  This is much shorter and much more Ruby-like!  
 # 2. Tests were failing because I forgot to account for zero-base indexed arrays!  
 # 3. I wondering whether the employment of elsif and an explicit else clause would help at all...  
+# 4. I thought I'd apply the same sorts of changes to month lookups to day lookups...  
+# 5. Producing some interesting attempts at consolidating the code.  See particularly MONTH_DAYS and self#days.  
 
 class Month
   
@@ -21,34 +23,41 @@ class Month
   MONTH_NAMES_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   MONTH_NUMBERS = 1..12
   
-  DAY_NAMES_LONG = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-  DAY_NAMES_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   MONTH_DAY_NUMBERS = 1..31
+  
+  ISO_8601_DAY_NAMES_LONG = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  ISO_8601_DAY_NAMES_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  ISO_8601_WEEK_DAY_NUMBERS = 1..7
+  
+  DAY_NAMES_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  DAY_NAMES_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   WEEK_DAY_NUMBERS = 0..6
   
+  MONTH_DAYS = [31, Proc.new {|year| Date.leap?(year) ? 29 : 28}, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  
   def self.to_long(month)
-    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i];
-      elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i];
-      elsif i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_LONG[i];
-      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_LONG[i];
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
+      elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
+      elsif i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_LONG[i]
+      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_LONG[i]
       else; return nil
     end
   end
   
   def self.to_short(month)
-    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i];
-      elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i];
-      elsif i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_SHORT[i];
-      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_SHORT[i];
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i]
+      elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i]
+      elsif i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_SHORT[i]
+      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_SHORT[i]
       else; return nil
     end
   end
   
   def self.to_num(month)
-    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return i+1;
-      elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return i+1;
-      elsif i = MONTH_NUMBERS.to_a.index(month); return i+1;
-      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return i+1;
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return i+1
+      elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return i+1
+      elsif i = MONTH_NUMBERS.to_a.index(month); return i+1
+      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return i+1
       else; return nil
     end
   end
@@ -58,22 +67,7 @@ class Month
   end
   
   def self.days(month, year = Date.today.year)
-    case month.to_s.capitalize
-      when to_long(1), to_short(1), to_num(1).to_s; days_in_month = 31
-      when to_long(2), to_short(2), to_num(2).to_s; Date.leap?(year) ? days_in_month = 29 : days_in_month = 28
-      when to_long(3), to_short(3), to_num(3).to_s; days_in_month = 31
-      when to_long(4), to_short(4), to_num(4).to_s; days_in_month = 30
-      when to_long(5), to_short(5), to_num(5).to_s; days_in_month = 31
-      when to_long(6), to_short(6), to_num(6).to_s; days_in_month = 30
-      when to_long(7), to_short(7), to_num(7).to_s; days_in_month = 31
-      when to_long(8), to_short(8), to_num(8).to_s; days_in_month = 31
-      when to_long(9), to_short(9), to_num(9).to_s; days_in_month = 30
-      when to_long(10), to_short(10), to_num(10).to_s; days_in_month = 31
-      when to_long(11), to_short(11), to_num(11).to_s; days_in_month = 30
-      when to_long(12), to_short(12), to_num(12).to_s; days_in_month = 31
-      else return nil
-    end
-    return days_in_month
+    MONTH_DAYS[to_num(month) - 1].call(year)
   end
   
   def self.days_in_month(month, year = Date.today.year)
