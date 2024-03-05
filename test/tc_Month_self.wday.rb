@@ -1,17 +1,14 @@
-#!/usr/bin/env ruby
-#
-# Test case: Month#wday.  
-# 
-# 20061002
-# 0.3.0
-#
-# Changes: 
-# 1. Added test_num_as_num_with_long_month.  
-# 2. Added test_num_as_num_with_short_month.  
-# 3. Added test_num_as_string_with_long_month.  
-# 4. Added test_num_as_string_with_short_month.  
+# tc_Month_self.wday
 
-class TC_Month_Wday < Test::Unit::TestCase
+# 20110702
+# 0.7.0
+
+# Changes: 
+# 1. Bumped version number to correspond with Month's overall version number.  
+
+require 'Month/self.wday'
+
+class TC_Month_self_wday < Test::Unit::TestCase
     
   def test_num_as_num
     assert_equal 0, Month.wday(1, 10, 2006)

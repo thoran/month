@@ -1,15 +1,15 @@
-#!/usr/bin/env ruby
-#
-# Test case: Month#day_long.  
-# 
-# 20061002
-# 0.2.0
-#
-# Changes: 
-# 1. I put in the optional versions with a conditional for the future dates when it would otherwise fail---as per tc_Month_dates.  
+# tc_Month_self.day
 
-class TC_Month_Day_Long < Test::Unit::TestCase
-    
+# 20110702
+# 0.7.0
+
+# Changes: 
+# 1. Bumped version number to correspond with Month's overall version number.  
+
+require 'Month/self.day'
+
+class TC_Month_self_day < Test::Unit::TestCase
+  
   def test_num_as_num
     assert_equal 'Sunday', Month.day(1, 10, 2006)
     assert_equal 'Monday', Month.day(2, 10, 2006)
@@ -41,8 +41,8 @@ class TC_Month_Day_Long < Test::Unit::TestCase
     assert_equal 'Saturday', Month.day(28, 10, 2006)
     assert_equal 'Sunday', Month.day(29, 10, 2006)
     assert_equal 'Monday', Month.day(30, 10, 2006)
-    assert_equal 'Tuesday', Month.day(31, 10, 2006)    
-    assert_equal 'Wednesday', Month.day(1, 11, 2006)    
+    assert_equal 'Tuesday', Month.day(31, 10, 2006)
+    assert_equal 'Wednesday', Month.day(1, 11, 2006)
   end
   
   def test_num_as_string
@@ -76,10 +76,10 @@ class TC_Month_Day_Long < Test::Unit::TestCase
     assert_equal 'Saturday', Month.day('28', '10', '2006')
     assert_equal 'Sunday', Month.day('29', '10', '2006')
     assert_equal 'Monday', Month.day('30', '10', '2006')
-    assert_equal 'Tuesday', Month.day('31', '10', '2006')    
-    assert_equal 'Wednesday', Month.day('1', '11', '2006')    
+    assert_equal 'Tuesday', Month.day('31', '10', '2006')
+    assert_equal 'Wednesday', Month.day('1', '11', '2006')
   end
-  
+
   def test_num_as_num_with_defaults
     if Date.today.year == 2006 && Date.today.month == 10
       assert_equal 'Sunday', Month.day(1)

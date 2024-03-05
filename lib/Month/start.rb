@@ -1,15 +1,11 @@
+# Month/start
 # Month#start
 
-# 2010.08.19
-# 0.0.0
-
-# History: Derived from the still not quite sorted date and time classes I have been tinkering with for years...  
+# 20110704
+# 0.7.0
 
 class Month
   
-  def start
-    Date.new(@year, @month, 1)
-  end
-  alias_method :beginning, :start
+  alias_method :start, :beginning
   
 end

@@ -1,14 +1,14 @@
-#!/usr/bin/env ruby
-# Test case: Month#cdates.  
+# tc_Month_self.cdates
 
-# 20061002
-# 0.4.0
-
-# Description: This tests for when 1 = Monday...7 = Sunday.  
+# 20110702
+# 0.7.0
 
 # Changes: 
+# 1. Bumped version number to correspond with Month's overall version number.  
 
-class TC_Month_Cdates < Test::Unit::TestCase
+require 'Month/self.cdates'
+
+class TC_Month_self_cdates < Test::Unit::TestCase
   
   def test_day_capitalized_long
     if Date.today.year == 2006 && Date.today.month == 10

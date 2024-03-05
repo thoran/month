@@ -1,20 +1,21 @@
+# Month/self.end
 # Month.end
 
-# 2010.08.19
-# 0.0.0
+# 20110702
+# 0.7.0
 
-# History: Derived from the still not quite sorted date and time classes I have been tinkering with for years...  
+# Changes: 
+# 1. Added a more typical interface which has month and year in it, with defauls as per most other Month class methods.  
+
+require 'date'
+require 'Month/self.days'
 
 class Month
-  
   class << self
     
-    def end
-      today = Date.today
-      Date.new(today.year, today.month, self.days)
+    def end(month = Date.today.month, year = Date.today.year)
+      Date.new(year, month, self.days(month, year))
     end
-    alias_method :finish, :end
     
   end
-  
 end

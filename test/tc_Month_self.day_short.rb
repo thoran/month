@@ -1,14 +1,14 @@
-#!/usr/bin/env ruby
-#
-# Test case: Month#day_short.  
-# 
-# 20061002
-# 0.2.0
-#
-# Changes: 
-# 1. I put in the optional versions with a conditional for the future dates when it would otherwise fail---as per tc_Month_dates.  
+# tc_Month_self.day_short
 
-class TC_Month_Day_Short < Test::Unit::TestCase
+# 20110702
+# 0.7.0
+
+# Changes: 
+# 1. Bumped version number to correspond with Month's overall version number.  
+
+require 'Month/self.day_short'
+
+class TC_Month_self_day_short < Test::Unit::TestCase
     
   def test_num_as_num
     assert_equal 'Sun', Month.day_short(1, 10, 2006)
@@ -151,10 +151,10 @@ class TC_Month_Day_Short < Test::Unit::TestCase
       assert_equal 'Tue', Month.day_short('31')
     end
   end
-
+  
   def test_crap
     assert_equal nil, Month.day_short('random')
     assert_equal nil, Month.day_short(32)
   end
-      
+  
 end
