@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.1.3
+# 0.1.4
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -21,6 +21,10 @@
 # 9. Converted day to a string before capitalizing, since day might be input as something other than a string and if so capitalize will fail.  
 # 10. The test in self#dates should have been an OR, not an AND!  
 # 11. Modified the sanity test in self#day to test the string value of year against the regex.  
+# 12. The test in self#dates wasn't thorough enough to cope with the change to accept weekday numbers.  It is possible for a nonsense string to become 0 when converted to an integer, so the comparison against @@number_weekdays would have failed.  Some of these sorts of tests could be cleaned up a bit?...  
+# 13. Added class variable @@number_weekdays!  
+# 14. Accommodated numeric inputs to self#dates.  
+# 15. The test for numbers didn't make sense in self#dates, since it only tested for the string representation of numbers, but not the number representation of numbers.  
 
 # Discussion: 
 # 1. Some of the later methods might be better moved to Date or another class...  
@@ -36,7 +40,8 @@ class Month
   @@number_days = 1..31
   @@day_names_short = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   @@day_names_long = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    
+  @@number_weekdays = 0..6
+  
   def self.to_long(month)
     month = month.to_s
     case month
@@ -196,18 +201,19 @@ class Month
   end
   
   def self.dates(day, month = Date.today.month, year = Date.today.year)
+    unconverted_day = day
     day = day.to_s.capitalize
-    if @@day_names_short.member?(day) || @@day_names_long.member?(day)
+    if @@day_names_short.member?(day) || @@day_names_long.member?(day) || (@@number_weekdays.member?(day.to_i) && day =~ /\d/) || (@@number_weekdays.member?(day.to_i) && unconverted_day.class == Fixnum)
       list_of_dates = []
       Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
         case date.wday
-          when 0; list_of_dates << date.mday if ('Sun' == day || 'Sunday' == day)
-          when 1; list_of_dates << date.mday if ('Mon' == day || 'Monday' == day)
-          when 2; list_of_dates << date.mday if ('Tue' == day || 'Tuesday' == day)
-          when 3; list_of_dates << date.mday if ('Wed' == day || 'Wednesday' == day)
-          when 4; list_of_dates << date.mday if ('Thu' == day || 'Thursday' == day)
-          when 5; list_of_dates << date.mday if ('Fri' == day || 'Friday' == day)
-          when 6; list_of_dates << date.mday if ('Sat' == day || 'Saturday' == day)
+          when 0; list_of_dates << date.mday if ('Sun' == day || 'Sunday' == day || '0' == day)
+          when 1; list_of_dates << date.mday if ('Mon' == day || 'Monday' == day || '1' == day) 
+          when 2; list_of_dates << date.mday if ('Tue' == day || 'Tuesday' == day || '2' == day)
+          when 3; list_of_dates << date.mday if ('Wed' == day || 'Wednesday' == day || '3' == day)
+          when 4; list_of_dates << date.mday if ('Thu' == day || 'Thursday' == day || '4' == day)
+          when 5; list_of_dates << date.mday if ('Fri' == day || 'Friday' == day || '5' == day)
+          when 6; list_of_dates << date.mday if ('Sat' == day || 'Saturday' == day || '6' == day)
         end
       end
       return list_of_dates
