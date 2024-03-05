@@ -1,14 +1,4 @@
-# tc_Month_self.cdates
-
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
+# test/tc_Month_self.cdates.rb
 
 if __FILE__ == $0
   require 'minitest/autorun'
@@ -17,7 +7,7 @@ if __FILE__ == $0
   require 'Month/self.cdates'
 end
 
-class TC_Month_self_cdates < MiniTest::Unit::TestCase
+class TC_Month_self_cdates < MiniTest::Test
   
   def test_no_day
     assert_equal (1..31).collect{|date| date}, Month.cdates(2006, 10)

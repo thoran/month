@@ -1,16 +1,6 @@
-# tc_Month_day
+# test/tc_Month_day.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_day < MiniTest::Unit::TestCase
+class TC_Month_day < MiniTest::Test
   
   def test_num_as_num
     assert_equal 'Sunday', Month.new(2006, 10).day(1)

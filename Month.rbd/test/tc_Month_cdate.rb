@@ -1,14 +1,4 @@
-# tc_Month_cdate
-
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Reversed arguments for Month.new.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
+# test/tc_Month_cdate.rb
 
 if __FILE__ == $0
   require 'minitest/autorun'
@@ -18,7 +8,7 @@ if __FILE__ == $0
   require 'Month/cdate'
 end
 
-class TC_Month_cdate < MiniTest::Unit::TestCase
+class TC_Month_cdate < MiniTest::Test
   
   def test_cdate
     assert_equal 3, Month.new(2011, 1).cdate('First', 'Monday')

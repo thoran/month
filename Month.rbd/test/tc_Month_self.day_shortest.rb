@@ -1,16 +1,6 @@
-# tc_Month_self.day_shortest
+# test/tc_Month_self.day_shortest.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_self_day_shortest < MiniTest::Unit::TestCase
+class TC_Month_self_day_shortest < MiniTest::Test
     
   def test_num_as_num
     assert_equal 'Su', Month.day_shortest(1, 10, 2006)

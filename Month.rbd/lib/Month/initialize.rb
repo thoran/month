@@ -1,18 +1,5 @@
-# Month/initialize
+# Month/initialize.rb
 # Month#initialize
-
-# 20120120
-# 0.9.2
-
-# Changes since 0.8: 
-# 1. Version number bump to 0.9.0.  
-# 2. See the Notes...  
-# 3. + custom ArgumentError handling.  
-# 4. It now checks that @month is in the range of 1 to 12
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
 
 # Notes: 
 # 1. With a view to compatibility with Francis Hwang's version of a Month class, and as a nod to Ruby's Date class, I have made it possible to supply the year optionally, but first, rather than second if there are two arguments.  

@@ -1,43 +1,4 @@
-# Month/_all
-
-# 20120120, 21
-# 0.9.2
-
-# Changes since 0.9.0: 
-# 1. + load 'Month/last_month.rb'.  
-# 2. + load 'Month/self.last_month.rb'.  
-# 3. + load 'Month/prev_month.rb'.  
-# 4. + load 'Month/self.prev_month.rb'.  
-# 5. + load 'Month/previous_month.rb'.  
-# 6. + load 'Month/self.previous_month.rb'.  
-# 7. + load 'Month/prior_month.rb'.  
-# 8. + load 'Month/self.prior_month.rb'.  
-# 9. + load 'Month/next_month.rb'.  
-# 10. + load 'Month/self.next_month.rb'.  
-# 11. + load 'Month/succ_month.rb'.  
-# 12. + load 'Month/self.succ_month.rb'.  
-# 13. + load 'Month/successor.rb'.  
-# 14. + load 'Month/self.successor.rb'.  
-# 15. + load 'Month/successor_month.rb'.  
-# 16. + load 'Month/self.successor_month.rb'.  
-# 17. + load 'Month/_equals.rb'.  
-# 18. /load 'Month/comparator.rb'/load 'Month/_comparator.rb'/.  
-# 19. Placed alphabetised methods first.  
-# 20. + load 'Month/self.now.rb'
-# 21. - load 'Month/today.rb'
-# 22. + load 'Month/day_short.rb'.  
-# 23. + load 'Month/day_long.rb'.  
-# 24. + load 'Month/day_shortest.rb'.  
-# 25. + load 'Month/day.rb'.  
-# 26. /load 'Month/minus.rb'/load 'Month/_minus.rb'/.  
-# 27. /load 'Month/plus.rb'/load 'Month/_plus.rb'/.  
-# 0/1
-# 28. Version number bump to 0.9.1.  
-# 1/2
-# 29. Removed _equals.  
-# 30. Merged contents of _equals.rb (ie. ==()) with eqlQ.rb.  
-# 31. /_minus/minus/.  
-# 32. /_plus/plus/.  
+# Month/_all.rb
 
 load 'Month/_comparator.rb'
 load 'Month/begin_date.rb'

@@ -1,7 +1,7 @@
 # Month
 
-# 20120120
-# 0.9.2
+# 20140506, 08
+# 0.9.3
 
 # Description: Month does conversions of various formats for the representation of months and can when instantiated represent a specific month in time.  
 
@@ -40,7 +40,15 @@
 # 1/2
 # 29. /_minus.rb/minus.rb/.  
 # 30. /_plus.rb/plus.rb/.  
+# 2/3
+# 31. /MiniTest::Unit::TestCase/MiniTest::Test/.
+# 32. ~ test/ts_Month.rb, so that it would run reliably regardless of from where it was called.
+# 33. Made a similar change here as per 32.
+# 34. Removed all date, version, and change information from each library file as that should go here only.
+# 35. Removed all date, version, and change information from each test file as that should go here only.
 
-$LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), 'lib')))
+lib_dir = File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
+$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
+
 require 'Month/Constants'
 require 'Month/_all'

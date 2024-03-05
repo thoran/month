@@ -1,16 +1,6 @@
-# tc_Month_method_missing
+# test/tc_Month_method_missing.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_method_missing < MiniTest::Unit::TestCase
+class TC_Month_method_missing < MiniTest::Test
   
   def test_method_missing
     if Date.today.year == 2011 && Date.today.month == 1

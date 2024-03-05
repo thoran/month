@@ -1,16 +1,6 @@
-# tc_Month_previous
+# test/tc_Month_previous.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_previous < MiniTest::Unit::TestCase
+class TC_Month_previous < MiniTest::Test
   
   def test_previous
     assert_equal Month.new(2010, 12), Month.new(2011, 1).previous

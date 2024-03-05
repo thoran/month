@@ -1,16 +1,6 @@
-# tc_Month_self.method_missing
+# test/tc_Month_self.method_missing.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_self_method_missing < MiniTest::Unit::TestCase
+class TC_Month_self_method_missing < MiniTest::Test
   
   def test_self_method_missing_for_months
     assert_equal Month.new(1).month, Month.january.month

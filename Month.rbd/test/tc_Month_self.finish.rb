@@ -1,16 +1,6 @@
-# tc_Month_self.finish
+# test/tc_Month_self.finish.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Version number bump to 0.9.0.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_self_finish < MiniTest::Unit::TestCase
+class TC_Month_self_finish < MiniTest::Test
   
   def test_self_finish
     assert_equal Date.new(2006, 1, 31), Month.finish(2006, 1)

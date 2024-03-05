@@ -1,16 +1,6 @@
-# tc_Month_to_s
+# test/tc_Month_to_s.rb
 
-# 20120120
-# 0.9.2
-
-# Changes: since 0.8: 
-# 1. I changeed the default result to short so as Francis Hwang's version 0.1.2 of Month test suite passes.  
-# 0/1
-# 2. I changed Francis Hwang's version 0.1.2 test suite to expect the long version as was mine previously.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_to_s < MiniTest::Unit::TestCase
+class TC_Month_to_s < MiniTest::Test
   
   def test_to_s_with_no_arguments
     assert_equal 'January 2011', Month.new(2011, 1).to_s

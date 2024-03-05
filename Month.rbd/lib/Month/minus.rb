@@ -1,19 +1,5 @@
-# Month/minus
+# Month/minus.rb
 # Month#minus
-
-# 2011
-# 0.9.2
-
-# Changes since 0.8: 
-# 1. Version number bump to 0.9.0.  
-# 2. + require 'Month/initialize'.  
-# 3. Using attr_readers instead of instance variables.  
-# 4. Reversed the argument order for Month.new.  
-# 0/1
-# 5. Version number bump to 0.9.1.  
-# 1/2
-# 6. /def -/def minus/, with -() now aliased.  
-# 7. /_minus.rb/minus.rb/.  
 
 require 'Month/initialize'
 

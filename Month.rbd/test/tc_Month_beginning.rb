@@ -1,16 +1,6 @@
-# tc_Month_beginning
+# test/tc_Month_beginning.rb
 
-# 20120120
-# 0.9.2
-
-# Changes since 0.8
-# 1. Reversed arguments for Month.new.  
-# 0/1
-# 2. Version number bump to 0.9.1.  
-# 1/2
-# 3. Version number bump to 0.9.2.  
-
-class TC_Month_beginning < MiniTest::Unit::TestCase
+class TC_Month_beginning < MiniTest::Test
   
   def test_beginning
     assert_equal Date.new(2006, 1, 1), Month.new(2006, 1).beginning

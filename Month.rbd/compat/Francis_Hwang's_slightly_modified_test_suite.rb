@@ -1,16 +1,10 @@
-# Month/compat/Francis_Hwang's_slightly_modified_test_suite.rb
+# compat/Francis_Hwang's_slightly_modified_test_suite.rb
 
-# 20111204
-# 0.9.2
-
-# Notes: 
+# Notes:
 # 1. This is Francis Hwang's test suite with the following changes...
-# 2. The load path so as it runs from within the compat directory.  
-# 3. /require 'month'/require 'Month'/.  
-# 0/1
-# 4. test_to_s altered to make use of to_long, not to_short.  
-# 1/2
-# 5. Version number bump to 0.9.2.  
+#   a. The load path so as it runs from within the compat directory.
+#   b. /require 'month'/require 'Month'/.
+#   c. test_to_s altered to make use of to_long, not to_short.
 
 $: << File.expand_path('..')
 require 'Month'
