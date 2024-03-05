@@ -1,7 +1,7 @@
 # Month
 
-# 20071216
-# 0.5.4
+# 2010.08.19
+# 0.5.5
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to do the conversions.  
 
@@ -17,6 +17,9 @@
 # 6. Put in MONTH_NUMBERS_AS_STRINGS as per Todo #2.  This may save a bit of time since while there doesn't need to be any collect operation on the MONTH_NUMBERS range, there is now a to_a method applied and I'm not sure which is the more efficient.  I can change it back if need be...  
 # 3/4
 # 7. Month.dates and Month.cdates now are able to output all dates for a month by making the day argument optional.  
+# 4/5
+# 8. alias_method :days_in_month, :days
+# 9. alias_method :to_number, :to_num
 
 # Todo: 
 # 1. It isn't essential that this be done, but it might be nice to acknowledge that self#cdates does not need to check whether the input day is a Fixnum or not, since it is using ISO day representation and there is no zero value as it starts at 1, it means that non-numeric strings will not convert to zero.  I could also consider using #to_str inside a begin-end block or something like that...  
@@ -83,10 +86,7 @@ class Month
       else; return nil
     end
   end
-  
-  def to_number(month = Date.today.month)
-    self.to_num(month)
-  end
+  alias_method :to_number, :to_num
   
   def days(month = Date.today.month, year = Date.today.year)
     if i = to_num(month)
@@ -98,10 +98,7 @@ class Month
       return nil
     end
   end
-  
-  def days_in_month(month = Date.today.month, year = Date.today.year)
-    self.days(month, year)
-  end
+  alias_method :days_in_month, :days
   
   def dates(day = nil, month = Date.today.month, year = Date.today.year)
     list_of_dates = []
