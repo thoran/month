@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.4.1
+# 0.4.2
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -11,6 +11,7 @@
 # Changes: 
 # 1. Added self#cdates which uses ISO representation of numeric weekdays; where 7 = Sunday, rather than 0 = Sunday.  
 # 2. Using all the ISO constants now, not that it should make that much difference though...  Actually it should since the indices will be different.  But I knew that didn't I?...  
+# 3. I needed to account for the fact that the arrays are zero-based indices again...  
 
 class Month
   
@@ -134,9 +135,9 @@ class Month
   def self.cdates(day, month = Date.today.month, year = Date.today.year)
     month = self.to_num(month)
     if e = ISO_8601_DAY_NAMES_LONG.to_a.index(day.to_s.capitalize)
-      weekday_number = e
+      weekday_number = e + 1
     elsif e = ISO_8601_DAY_NAMES_SHORT.to_a.index(day.to_s.capitalize)
-      weekday_number = e 
+      weekday_number = e + 1
     elsif ISO_8601_WEEK_DAY_NUMBERS_AS_STRINGS.to_a.member?(day)
       weekday_number = day.to_i
     elsif ISO_8601_WEEK_DAY_NUMBERS.to_a.member?(day.to_i) && day.class == Fixnum
