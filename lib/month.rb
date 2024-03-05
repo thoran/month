@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.10
+# 0.3.11
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -24,6 +24,7 @@
 # 13. Compressed self#day, self#day_short, and self#wday by using some assignment kung-fu.  
 # 14. Finally figured out how to compress self#dates in a manner similar to all the other methods---and by using another of Month's class methods too!  So they must be useful!  Although self#dates could still do with a little bit of a tidy-up...  
 # 15. self#dates looks better now.  I've managed to replace both the test and conversions into a single section of code.  
+# 16. And now it actually works!  
 
 class Month
   
@@ -44,6 +45,7 @@ class Month
   DAY_NAMES_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   DAY_NAMES_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   WEEK_DAY_NUMBERS = 0..6
+  WEEK_DAY_NUMBERS_AS_STRINGS = '0'..'6'
   
   def self.to_long(month)
     if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
@@ -92,12 +94,15 @@ class Month
   end
   
   def self.dates(day, month = Date.today.month, year = Date.today.year)
-    if e = DAY_NAMES_LONG.to_a.index(day)
+    month = self.to_num(month)
+    if e = DAY_NAMES_LONG.to_a.index(day.to_s.capitalize)
       weekday_number = e
-    elsif e = DAY_NAMES_SHORT.to_a.index(day)
-      weekday_number = e
-    elsif e = DAY_NAMES_LONG.to_a.member?(day.to_i)
-      weekday_number = e
+    elsif e = DAY_NAMES_SHORT.to_a.index(day.to_s.capitalize)
+      weekday_number = e 
+    elsif WEEK_DAY_NUMBERS_AS_STRINGS.to_a.member?(day)
+      weekday_number = day.to_i
+    elsif WEEK_DAY_NUMBERS.to_a.member?(day.to_i) && day.class == Fixnum
+      weekday_number = day.to_i
     else
       return nil
     end
