@@ -1,6 +1,6 @@
 # tc_Month_self.to_num
 
-# 20110824
+# 20110824, 25
 # 0.9.0
 
 class TC_Month_self_to_num < Test::Unit::TestCase
@@ -94,10 +94,10 @@ class TC_Month_self_to_num < Test::Unit::TestCase
     assert_equal 11, Month.to_num('11')
     assert_equal 12, Month.to_num('12')
   end
-
+  
   def test_crap
     assert_equal nil, Month.to_num('random')
     assert_equal nil, Month.to_num(13)
   end
-      
+  
 end
