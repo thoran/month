@@ -10,5 +10,8 @@
 # Changes since 0.8: 
 # 1. Month.rb is now a load file.  
 
+p $LOAD_PATH
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), 'lib')))
+p $LOAD_PATH
 require 'Month/Constants'
+require 'Month/_all'

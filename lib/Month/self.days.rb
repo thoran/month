@@ -1,10 +1,16 @@
 # Month/self.days
 # Month.days
 
-# 20100706
-# 0.8.0
+# 20110824
+# 0.9.0
 
-require 'Month'
+# Changes since 0.8: 
+# 1. Version number bump to 0.9.0.  
+# 2. /require 'Month'/require 'Month/Constants'/.  
+# 3. + require 'date'.  
+
+require 'date'
+require 'Month/Constants'
 require 'Month/to_num'
 
 class Month

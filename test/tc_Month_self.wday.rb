@@ -1,9 +1,7 @@
 # tc_Month_self.wday
 
-# 20110707
-# 0.8.0
-
-require 'Month/self.wday'
+# 20110824
+# 0.9.0
 
 class TC_Month_self_wday < Test::Unit::TestCase
     

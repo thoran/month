@@ -1,10 +1,7 @@
 # tc_Month_self.begin_date
 
-# 20110706
-# 0.8.0
-
-require 'date'
-require 'Month/self.begin_date'
+# 20110824
+# 0.9.0
 
 class TC_Month_self_begin_date < Test::Unit::TestCase
   

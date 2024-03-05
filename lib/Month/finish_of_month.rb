@@ -1,16 +1,21 @@
 # Month/finish_of_month
 # Month#finish_of_month
 
-# 20110707
-# 0.8.0
+# 20110824
+# 0.9.0
 
-require 'Month'
+# Changes since 0.8: 
+# 1. Version number bump to 0.9.0.  
+# 2. /require 'Month'/require 'Month/initialize'/.  
+# 3. Using attr_readers instead of instance variables.  
+
+require 'Month/initialize'
 require 'Month/self.finish_of_month'
 
 class Month
   
   def finish_of_month
-    Month.finish_of_month(@month, @year)
+    Month.finish_of_month(month, year)
   end
   
 end

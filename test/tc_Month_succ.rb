@@ -1,17 +1,14 @@
 # tc_Month_succ
 
-# 20110705
-# 0.8.0
-
-require 'Month'
-require 'Month/succ'
+# 20110824
+# 0.9.0
 
 class TC_Month_succ < Test::Unit::TestCase
   
   def test_succ
-    assert_equal Month.new(2, 2011), Month.new(1, 2011).succ
-    assert_equal Month.new(1, 2012), Month.new(12, 2011).succ
-    assert_equal Month.new(12, 2012), Month.new(11, 2012).succ
+    assert_equal Month.new(2011, 2), Month.new(2011, 1).succ
+    assert_equal Month.new(2012, 1), Month.new(2011, 12).succ
+    assert_equal Month.new(2012, 12), Month.new(2012, 11).succ
   end
   
 end

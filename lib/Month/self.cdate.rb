@@ -1,8 +1,12 @@
 # Month/self.cdate
 # Month.cdate
 
-# 20110822
-# 0.8.1
+# 20110822, 24
+# 0.9.0
+
+# Changes since 0.8: 
+# 1. Version number bump to 0.9.0.  
+# 2. /return//.  
 
 require 'date'
 require 'Month/self.cdates'

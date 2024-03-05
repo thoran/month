@@ -1,11 +1,15 @@
 # Month/self.day_shortest
 # Month.day_shortest
 
-# 20110822
-# 0.8.1
+# 20110822, 24
+# 0.9.0
+
+# Changes since 0.8: 
+# 1. Version number bump to 0.9.0.  
+# 2. /require 'Month'/require 'Month/Constants'/.  
 
 require 'date'
-require 'Month'
+require 'Month/Constants'
 
 class Month
   class << self

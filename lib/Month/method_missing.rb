@@ -1,10 +1,10 @@
 # Month/method_missing
 # Month#method_missing
 
-# 20110822
-# 0.8.1
+# 20110822, 24
+# 0.9.0
 
-require 'Month'
+require 'Month/self.dates'
 
 class Month
   

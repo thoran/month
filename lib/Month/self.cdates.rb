@@ -1,15 +1,16 @@
 # Month/self.cdates
 # Month.cdates
 
-# 20100706
-# 0.8.0
+# 20110824
+# 0.9.0
 
-# Changes: 
-# 1. 
+# Changes since 0.8: 
+# 1. Version number bump to 0.9.0.  
+# 2. /require 'Month'/require 'Month/Constants'/.  
 
 require 'Array/extract_optionsX'
 require 'date'
-require 'Month'
+require 'Month/Constants'
 require 'Month/self.to_num'
 require 'Month/self.days'
 

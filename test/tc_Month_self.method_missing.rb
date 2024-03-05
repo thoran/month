@@ -1,10 +1,7 @@
 # tc_Month_self.method_missing
 
-# 20110707
-# 0.8.0
-
-require 'Month'
-require 'Month/self.method_missing'
+# 20110824
+# 0.9.0
 
 class TC_Month_self_method_missing < Test::Unit::TestCase
   

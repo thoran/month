@@ -1,11 +1,7 @@
 # tc_Month_self.last
 
-# 20110706
-# 0.8.0
-
-require 'date'
-require 'Month'
-require 'Month/self.last'
+# 20110824
+# 0.9.0
 
 class TC_Month_self_last < Test::Unit::TestCase
   
@@ -46,9 +42,9 @@ class TC_Month_self_last < Test::Unit::TestCase
   end
   
   def test_self_last_with_month_and_year_argument
-    assert_equal Month.new(12, 2010), Month.last(1, 2011)
-    assert_equal Month.new(11, 2011), Month.last(12, 2011)
-    assert_equal Month.new(10, 2012), Month.last(11, 2012)
+    assert_equal Month.new(2010, 12), Month.last(1, 2011)
+    assert_equal Month.new(2011, 11), Month.last(12, 2011)
+    assert_equal Month.new(2012, 10), Month.last(11, 2012)
   end
   
 end

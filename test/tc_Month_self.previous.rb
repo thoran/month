@@ -1,10 +1,7 @@
 # tc_Month_self.previous
 
-# 20110706
-# 0.8.0
-
-require 'Month'
-require 'Month/self.previous'
+# 20110824
+# 0.9.0
 
 class TC_Month_self_previous < Test::Unit::TestCase
   

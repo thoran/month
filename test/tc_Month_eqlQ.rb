@@ -1,15 +1,15 @@
 # tc_Month_eqlQ
 
-# 20110705
-# 0.8.0
+# 20110824
+# 0.9.0
 
-require 'Month'
-require 'Month/eqlQ'
+# Changes since 0.8
+# 1. Reversed arguments for Month.new.  
 
 class TC_Month_eqlQ < Test::Unit::TestCase
   
   def test_eqlQ
-    assert_equal true, Month.new(1, 2011).eql?(Month.new(1, 2011))
+    assert_equal true, Month.new(2011, 1).eql?(Month.new(2011, 1))
   end
   
 end

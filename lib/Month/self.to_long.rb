@@ -1,10 +1,16 @@
 # Month/self.to_long
 # Month.to_long
 
-# 20110822
-# 0.8.1
+# 20110822, 24
+# 0.9.0
 
-require 'Month'
+# Changes since 0.8: 
+# 1. Version number bump to 0.9.0.  
+# 2. /require 'Month/require 'Month/Constants'/.  
+# 3. + require 'date'.  
+
+require 'date'
+require 'Month/Constants'
 
 class Month
   class << self
