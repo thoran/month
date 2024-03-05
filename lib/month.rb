@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.2.1
+# 0.2.2
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -13,6 +13,7 @@
 # 2. Added the method self#wday which returns a number rather than the name of the day of the week.  
 # 3. Added self#day_long as a (sort of an) alias of self#day.  
 # 4. Added self#day_short which returns the short name of the day of the week.  
+# 5. Modified self#dates to be able to accept month names in short, long, and as number, either as a string or number; using the methods contained herein of course!  
 
 class Month
   
@@ -188,6 +189,7 @@ class Month
   def self.dates(day, month = Date.today.month, year = Date.today.year)
     unconverted_day = day
     day = day.to_s.capitalize
+    month = Month.to_num(month)
     if DAY_NAMES_SHORT.member?(day) || DAY_NAMES_LONG.member?(day) || (WEEK_DAY_NUMBERS.member?(day.to_i) && day =~ /\d/) || (WEEK_DAY_NUMBERS.member?(day.to_i) && unconverted_day.class == Fixnum)
       list_of_dates = []
       Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
