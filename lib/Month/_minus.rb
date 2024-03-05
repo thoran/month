@@ -18,6 +18,7 @@ class Month
     subtracted_years, remaining_months = subtracted_months.divmod(12)
     overflow_year, month = (self.month - remaining_months).divmod(12)
     year = self.year - subtracted_years - overflow_year.abs
+    p year, month
     Month.new(year, month)
   end
   

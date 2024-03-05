@@ -8,7 +8,7 @@
 
 class TC_Month_end_of_month < MiniTest::Unit::TestCase
   
-  def test_end
+  def test_end_of_month
     assert_equal Date.new(2006, 1, 31), Month.new(2006, 1).end_of_month
     assert_equal Date.new(2006, 2, 28), Month.new(2006, 2).end_of_month
     assert_equal Date.new(2008, 2, 29), Month.new(2008, 2).end_of_month

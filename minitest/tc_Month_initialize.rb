@@ -1,7 +1,7 @@
 # tc_Month_initialize
 
-# 20110825, 27
-# 0.9.0
+# 20111203, 4
+# 0.9.1
 
 class TC_Month_initialize < MiniTest::Unit::TestCase
   
@@ -10,7 +10,7 @@ class TC_Month_initialize < MiniTest::Unit::TestCase
     assert_equal Date.today.month, Month.new.month
   end
   
-  def test_one_arguments
+  def test_one_argument
     assert_equal Date.today.year, Month.new(12).year
     assert_equal 12, Month.new(12).month
     assert_equal Date.today.year, Month.new(11).year
@@ -25,7 +25,7 @@ class TC_Month_initialize < MiniTest::Unit::TestCase
   end
   
   def test_three_arguments
-    assert_raises(ArgumentError){Month.new(1, 2, 3, 4)}
+    assert_raises(ArgumentError){Month.new(1, 2, 3)}
   end
   
 end

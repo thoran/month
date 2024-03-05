@@ -1,7 +1,7 @@
 # tc_Month_self.succ
 
-# 20110824
-# 0.9.0
+# 20111203
+# 0.9.1
 
 class TC_Month_self_succ < MiniTest::Unit::TestCase
   

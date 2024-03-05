@@ -8,7 +8,7 @@ class TC_Month_self_prior < MiniTest::Unit::TestCase
   def test_self_prior
     today = Date.today
     case today.month
-    when 1; assert_equal Month.new(12, today.year - 1).month, Month.prior.month
+    when 1; assert_equal Month.new(today.year - 1, 12).month, Month.prior.month
     when 2; assert_equal Month.new(1).month, Month.prior.month
     when 3; assert_equal Month.new(2).month, Month.prior.month
     when 4; assert_equal Month.new(3).month, Month.prior.month

@@ -1,9 +1,9 @@
 # tc_Month_last
 
-# 20110824
-# 0.9.0
+# 20111203
+# 0.9.1
 
-class TC_Month_plus < MiniTest::Unit::TestCase
+class TC_Month_last < MiniTest::Unit::TestCase
   
   def test_plus
     assert_equal Month.new(2010, 12), Month.new(2011, 1).last

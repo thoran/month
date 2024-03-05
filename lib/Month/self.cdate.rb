@@ -1,12 +1,14 @@
 # Month/self.cdate
 # Month.cdate
 
-# 20110822, 24
-# 0.9.0
+# 20111204
+# 0.9.1
 
 # Changes since 0.8: 
 # 1. Version number bump to 0.9.0.  
 # 2. /return//.  
+# 0/1
+# 3. 
 
 require 'date'
 require 'Month/self.cdates'
@@ -14,8 +16,17 @@ require 'Month/self.cdates'
 class Month
   class << self
     
-    def cdate(which_day, day, month = Date.today.month, year = Date.today.year)
-      all = self.cdates(month, year, :day => day)
+    def cdate(which_day, day, *args)
+      year, month = (
+        case args.size
+        when 0; [Date.today.year, Date.today.month]
+        when 1; [Date.today.year, args[0]]
+        when 2; [args[0], args[1]]
+        else; raise ArgumentError, "too many arguments (#{args.size + 2} for 2, 3, or 4)"
+        end
+      )
+      fail unless (1..12).include?(month)
+      all = self.cdates(year, month, :day => day)
       case which_day.to_s.downcase
       when 'first', '1st', '1'; all[0]
       when 'second', '2nd', '2'; all[1]

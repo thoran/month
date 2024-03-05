@@ -1,18 +1,20 @@
 # Month/self.previous
 # Month.previous
 
-# 20110824
-# 0.9.0
+# 20111203
+# 0.9.1
 
 # Changes since 0.8: 
 # 1. Version number bump to 0.9.0.  
+# 0/1
+# 2. 
 
-require 'Month/self.last'
+require 'Month/self.prev'
 
 class Month
   class << self
     
-    alias_method :previous, :last
+    alias_method :previous, :prev
     
   end
 end

@@ -1,20 +1,20 @@
 # Month/self.beginning
 # Month.beginning
 
-# 20110824
-# 0.9.0
+# 20111204
+# 0.9.1
 
 # Changes since 0.8: 
 # 1. Version number bump to 0.9.0.  
+# 0/1
+# 2. 
 
-require 'date'
+require 'Month/self.begin_date'
 
 class Month
   class << self
     
-    def beginning(month = Date.today.month, year = Date.today.year)
-      Date.new(year, month, 1)
-    end
+    alias_method :beginning, :begin_date
     
   end
 end

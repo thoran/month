@@ -1,6 +1,6 @@
 # tc_Month_self.next
 
-# 20110824, 1203
+# 20110824
 # 0.9.0
 
 class TC_Month_self_next < MiniTest::Unit::TestCase

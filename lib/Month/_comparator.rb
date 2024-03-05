@@ -1,4 +1,4 @@
-# Month/comparator
+# Month/_comparator
 # Month#<=>
 
 # 20110824

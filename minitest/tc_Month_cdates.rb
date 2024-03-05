@@ -1,10 +1,20 @@
 # tc_Month_cdates
 
-# 20110824
-# 0.9.0
+# 20111204
+# 0.9.1
 
 # Changes since 0.8
 # 1. Reversed arguments for Month.new.  
+# 0/1
+# 2. 
+
+if __FILE__ == $0
+  require 'minitest/autorun'
+  $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
+  require 'Month/Constants'
+  require 'Month/initialize'
+  require 'Month/cdates'
+end
 
 class TC_Month_cdates < MiniTest::Unit::TestCase
   

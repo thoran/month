@@ -1,7 +1,7 @@
 # tc_Month_self.day_short
 
-# 20110824
-# 0.9.0
+# 20111204
+# 0.9.1
 
 class TC_Month_self_day_short < MiniTest::Unit::TestCase
     
@@ -71,12 +71,12 @@ class TC_Month_self_day_short < MiniTest::Unit::TestCase
     assert_equal 'Sat', Month.day_short('28', '10', '2006')
     assert_equal 'Sun', Month.day_short('29', '10', '2006')
     assert_equal 'Mon', Month.day_short('30', '10', '2006')
-    assert_equal 'Tue', Month.day_short('31', '10', '2006')    
-    assert_equal 'Wed', Month.day_short('1', '11', '2006')    
+    assert_equal 'Tue', Month.day_short('31', '10', '2006')
+    assert_equal 'Wed', Month.day_short('1', '11', '2006')
   end
 
   def test_num_as_num_with_defaults
-    if Date.today.year == 2006 && Date.today.month == 10    
+    if Date.today.year == 2006 && Date.today.month == 10
       assert_equal 'Sun', Month.day_short(1)
       assert_equal 'Mon', Month.day_short(2)
       assert_equal 'Tue', Month.day_short(3)

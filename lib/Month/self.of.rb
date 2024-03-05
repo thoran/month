@@ -1,8 +1,8 @@
 # Month/self.of
 # Month.of
 
-# 20110822, 23, 24
-# 0.9.0
+# 20111204
+# 0.9.1
 
 # Changes since 0.8: 
 # 1. Version number bump to 0.9.0.  
@@ -10,6 +10,9 @@
 # 3. /self.new/new/.  
 # 4. Tidied the regexes.  
 # 5. Reversed the arguments sent to new().  
+# 0/1
+# 6. Version number bump to 0.9.1.  
+# 7. 
 
 require 'date'
 require 'Month/initialize'
@@ -17,7 +20,15 @@ require 'Month/initialize'
 class Month
   class << self
     
-    def of(month, year = Date.today.year)
+    def of(*args)
+      year, month = (
+        case args.size
+        # when 0; [Date.today.year, Date.today.month]
+        when 1; [Date.today.year, args[0]]
+        when 2; [args[0], args[1]]
+        else; raise ArgumentError, "too many arguments (#{args.size} for 0, 1, or 2)"
+        end
+      )
       case month.to_s
       when /^(J|j)an(uary)*$/; new(year, 1)
       when /^(F|f)eb(ruary)*$/; new(year, 2)

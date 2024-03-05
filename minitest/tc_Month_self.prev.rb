@@ -1,14 +1,14 @@
 # tc_Month_self.prev
 
-# 20110824
-# 0.9.0
+# 20111203
+# 0.9.1
 
 class TC_Month_self_prev < MiniTest::Unit::TestCase
   
-  def test_self_next
+  def test_self_prev
     today = Date.today
     case today.month
-    when 1; assert_equal Month.new(12, today.year - 1).month, Month.prev.month
+    when 1; assert_equal Month.new(today.year - 1, 12).month, Month.prev.month
     when 2; assert_equal Month.new(1).month, Month.prev.month
     when 3; assert_equal Month.new(2).month, Month.prev.month
     when 4; assert_equal Month.new(3).month, Month.prev.month

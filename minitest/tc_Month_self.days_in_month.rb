@@ -1,7 +1,10 @@
 # tc_Month_self.days_in_month
 
-# 20110824
-# 0.9.0
+# 20111204
+# 0.9.1
+
+# Changes since 0.8: 
+# 1. 
 
 class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
   
@@ -10,8 +13,8 @@ class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
     if Date.today.year == 2006
       assert_equal 28, Month.days_in_month('February')
     end
-    assert_equal 28, Month.days_in_month('February', 2007)
-    assert_equal 29, Month.days_in_month('February', 2008)
+    assert_equal 28, Month.days_in_month(2007, 'February')
+    assert_equal 29, Month.days_in_month(2008, 'February')
     assert_equal 31, Month.days_in_month('March')
     assert_equal 30, Month.days_in_month('April')
     assert_equal 31, Month.days_in_month('May')
@@ -29,8 +32,8 @@ class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
     if Date.today.year == 2006
       assert_equal 28, Month.days_in_month('february')
     end
-    assert_equal 28, Month.days_in_month('february', 2007)
-    assert_equal 29, Month.days_in_month('february', 2008)
+    assert_equal 28, Month.days_in_month(2007, 'february')
+    assert_equal 29, Month.days_in_month(2008, 'february')
     assert_equal 31, Month.days_in_month('march')
     assert_equal 30, Month.days_in_month('april')
     assert_equal 31, Month.days_in_month('may')
@@ -48,8 +51,8 @@ class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
     if Date.today.year == 2006
       assert_equal 28, Month.days_in_month('Feb')
     end
-    assert_equal 28, Month.days_in_month('Feb', 2007)
-    assert_equal 29, Month.days_in_month('Feb', 2008)
+    assert_equal 28, Month.days_in_month(2007, 'Feb')
+    assert_equal 29, Month.days_in_month(2008, 'Feb')
     assert_equal 31, Month.days_in_month('Mar')
     assert_equal 30, Month.days_in_month('Apr')
     assert_equal 31, Month.days_in_month('May')
@@ -67,8 +70,8 @@ class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
     if Date.today.year == 2006
       assert_equal 28, Month.days_in_month('feb')
     end
-    assert_equal 28, Month.days_in_month('feb', 2007)
-    assert_equal 29, Month.days_in_month('feb', 2008)
+    assert_equal 28, Month.days_in_month(2007, 'feb')
+    assert_equal 29, Month.days_in_month(2008, 'feb')
     assert_equal 31, Month.days_in_month('mar')
     assert_equal 30, Month.days_in_month('apr')
     assert_equal 31, Month.days_in_month('may')
@@ -86,8 +89,8 @@ class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
     if Date.today.year == 2006
       assert_equal 28, Month.days_in_month(2)
     end
-    assert_equal 28, Month.days_in_month(2, 2007)
-    assert_equal 29, Month.days_in_month(2, 2008)
+    assert_equal 28, Month.days_in_month(2007, 2)
+    assert_equal 29, Month.days_in_month(2008, 2)
     assert_equal 31, Month.days_in_month(3)
     assert_equal 30, Month.days_in_month(4)
     assert_equal 31, Month.days_in_month(5)
@@ -105,8 +108,8 @@ class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
     if Date.today.year == 2006
       assert_equal 28, Month.days_in_month('2')
     end
-    assert_equal 28, Month.days_in_month('2', 2007)
-    assert_equal 29, Month.days_in_month('2', 2008)
+    assert_equal 28, Month.days_in_month(2007, '2')
+    assert_equal 29, Month.days_in_month(2008, '2')
     assert_equal 31, Month.days_in_month('3')
     assert_equal 30, Month.days_in_month('4')
     assert_equal 31, Month.days_in_month('5')

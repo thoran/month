@@ -1,14 +1,14 @@
 # tc_Month_self.last
 
-# 20110824
-# 0.9.0
+# 20111204
+# 0.9.1
 
 class TC_Month_self_last < MiniTest::Unit::TestCase
   
   def test_self_last
     today = Date.today
     case today.month
-    when 1; assert_equal Month.new(12, today.year - 1).month, Month.last.month
+    when 1; assert_equal Month.new(today.year - 1, 12).month, Month.last.month
     when 2; assert_equal Month.new(1).month, Month.last.month
     when 3; assert_equal Month.new(2).month, Month.last.month
     when 4; assert_equal Month.new(3).month, Month.last.month
@@ -26,7 +26,7 @@ class TC_Month_self_last < MiniTest::Unit::TestCase
   def test_self_last_with_month_argument
     today = Date.today
     case today.month
-    when 1; assert_equal Month.new(12, today.year - 1).month, Month.last(1).month
+    when 1; assert_equal Month.new(today.year - 1, 12).month, Month.last(1).month
     when 2; assert_equal Month.new(1).month, Month.last(2).month
     when 3; assert_equal Month.new(2).month, Month.last(3).month
     when 4; assert_equal Month.new(3).month, Month.last(4).month
@@ -42,9 +42,9 @@ class TC_Month_self_last < MiniTest::Unit::TestCase
   end
   
   def test_self_last_with_month_and_year_argument
-    assert_equal Month.new(2010, 12), Month.last(1, 2011)
-    assert_equal Month.new(2011, 11), Month.last(12, 2011)
-    assert_equal Month.new(2012, 10), Month.last(11, 2012)
+    assert_equal Month.new(2010, 12), Month.last(2011, 1)
+    assert_equal Month.new(2011, 11), Month.last(2011, 12)
+    assert_equal Month.new(2012, 10), Month.last(2012, 11)
   end
   
 end

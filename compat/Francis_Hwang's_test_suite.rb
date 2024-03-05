@@ -1,12 +1,14 @@
-# Francis_Hwang's_test_suite.rb
+# Month/compat/Francis_Hwang's_slightly_modified_test_suite.rb
 
-# 20110827, 0905
-# 0.9.0
+# 20111204
+# 0.9.1
 
 # Notes: 
 # 1. This is Francis Hwang's test suite with the following changes...
 # 2. The load path so as it runs from within the compat directory.  
 # 3. /require 'month'/require 'Month'/.  
+# 0/1
+# 4. test_to_s altered to make use of to_long, not to_short.  
 
 $: << File.expand_path('..')
 require 'Month'
@@ -73,6 +75,6 @@ class TestMonth < Test::Unit::TestCase
 	end
 
 	def test_to_s
-		assert_equal 'Jan 2000', @jan2000.to_s
+		assert_equal 'January 2000', @jan2000.to_s
 	end
 end

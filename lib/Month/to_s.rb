@@ -1,8 +1,8 @@
 # Month/to_s
 # Month#to_s
 
-# 20110824, 27
-# 0.9.0
+# 20111204
+# 0.9.1
 
 # Changes since 0.8: 
 # 1. Version number bump to 0.9.0.  
@@ -11,6 +11,8 @@
 # 4. /self.//.  
 # 5. /month_name_length/month_name_length.to_sym/.  
 # 6. month_name_length now defaults to :short, so as Francis Hwang's test suite passes.  
+# 0/1
+# 7. month_name_length returns to defaulting to :long, and now Francis Hwang's test suite has been altered to match.  
 
 require 'Month/initialize'
 require 'Month/to_long'
@@ -18,7 +20,7 @@ require 'Month/to_short'
 
 class Month
   
-  def to_s(month_name_length = :short)
+  def to_s(month_name_length = :long)
     case month_name_length.to_sym
     when :long; "#{to_long} #{year}"
     when :short, 'short'; "#{to_short} #{year}"

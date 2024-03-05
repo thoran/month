@@ -1,7 +1,15 @@
 # tc_Month_self.of
 
-# 20110824
-# 0.9.0
+# 20111204
+# 0.9.1
+
+if __FILE__ == $0
+  require 'minitest/autorun'
+  $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
+  require 'Month/Constants'
+  require 'Month/self.of'
+  require 'Month/_equals'
+end
 
 class TC_Month_self_of < MiniTest::Unit::TestCase
   
