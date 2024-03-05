@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.2.2
+# 0.3.0
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -9,11 +9,7 @@
 # 1. Some of the later methods might be better moved to Date or another class...  
 
 # Changes: 
-# 1. Made the class variables class contants and did a little rearranging and renaming.  
-# 2. Added the method self#wday which returns a number rather than the name of the day of the week.  
-# 3. Added self#day_long as a (sort of an) alias of self#day.  
-# 4. Added self#day_short which returns the short name of the day of the week.  
-# 5. Modified self#dates to be able to accept month names in short, long, and as number, either as a string or number; using the methods contained herein of course!  
+# 1. I realized that the index of the class constants was the same as the numeric value for the months and that this provided the opportunity for vastly reducing the length of this code...  
 
 class Month
   
@@ -29,53 +25,15 @@ class Month
   WEEK_DAY_NUMBERS = 0..6
   
   def self.to_long(month)
-    month = month.to_s
-    case month
-      when /\D/
-        if (MONTH_NAMES_SHORT.to_a.member?(month.capitalize) || MONTH_NAMES_LONG.to_a.member?(month.capitalize))
-          case month.capitalize
-            when 'Jan', 'January'; long_month = 'January'
-            when 'Feb', 'February'; long_month = 'February'
-            when 'Mar', 'March'; long_month = 'March'
-            when 'Apr', 'April'; long_month = 'April'
-            when 'May'; long_month = 'May'
-            when 'Jun', 'June'; long_month = 'June'
-            when 'Jul', 'July'; long_month = 'July'
-            when 'Aug', 'August'; long_month = 'August'
-            when 'Sep', 'September'; long_month = 'September'
-            when 'Oct', 'October'; long_month = 'October'
-            when 'Nov', 'November'; long_month = 'November'
-            when 'Dec', 'December'; long_month = 'December'
-          end
-          return long_month
-        else
-          return nil
-        end
-      when /\d/
-        if MONTH_NUMBERS.to_a.member?(month.to_i)
-          case month
-            when '1'; long_month = 'January'
-            when '2'; long_month = 'February'
-            when '3'; long_month = 'March'
-            when '4'; long_month = 'April'
-            when '5'; long_month = 'May'
-            when '6'; long_month = 'June'
-            when '7'; long_month = 'July'
-            when '8'; long_month = 'August'
-            when '9'; long_month = 'September'
-            when '10'; long_month = 'October'
-            when '11'; long_month = 'November'
-            when '12'; long_month = 'December'
-          end
-          return long_month
-        else
-          return nil
-        end
-      else
-        return nil
-      end
+    case true
+      when i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
+      when i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
+      when i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_LONG[i]
+      when i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_LONG[i]
+      else; return nil
+    end
   end
-  
+    
   def self.to_short(month)
     month = month.to_s
     case month
