@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.5
+# 0.3.6
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -15,6 +15,7 @@
 # 4. I thought I'd apply the same sorts of changes to month lookups to day lookups...  
 # 5. Producing some interesting attempts at consolidating the code.  See particularly MONTH_DAYS and self#days.  
 # 6. I somehow knew that I couldn't call a number...  
+# 7. self#days needs to check for dud data since a nil will be returned from the to_num lookup in that case...  
 
 class Month
   
@@ -23,6 +24,7 @@ class Month
   MONTH_NAMES_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   MONTH_NAMES_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   MONTH_NUMBERS = 1..12
+  MONTH_DAYS = [31, Proc.new {|year| Date.leap?(year) ? 29 : 28}, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   
   MONTH_DAY_NUMBERS = 1..31
   
@@ -34,7 +36,6 @@ class Month
   DAY_NAMES_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   WEEK_DAY_NUMBERS = 0..6
   
-  MONTH_DAYS = [31, Proc.new {|year| Date.leap?(year) ? 29 : 28}, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   
   def self.to_long(month)
     if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
@@ -68,9 +69,11 @@ class Month
   end
   
   def self.days(month, year = Date.today.year)
-    case e = MONTH_DAYS[to_num(month) - 1]
-      when Fixnum; return e
-      else; return e.call(year)
+    if i = to_num(month)
+      case e = MONTH_DAYS[i - 1]
+        when Fixnum; return e
+        else; return e.call(year)
+      end
     end
   end
   
