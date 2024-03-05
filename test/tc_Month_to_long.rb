@@ -2,107 +2,108 @@
 #
 # Test case: Month#to_long.  
 # 
-# 20061001
-# 0.0.1
+# 20061002
+# 0.0.2
 #
 # Changes: 
 # 1. I didn't test for different capitalizations before and it was only because of one failure that I picked up the failings of version 0.0.5 of the Month class.  
+# 2. I switched the order of the inputs to the tests back to the way that I'd done it before and back to the way it should have been done, since Test::Unit::TestCase#test_ assumes that the result comes first, whereas I thought it might be more natural to have it come second.  
 
 class TC_Month_To_Long < Test::Unit::TestCase
   
   def test_long_capitalized
-    assert_equal Month.to_long('January'), 'January'
-    assert_equal Month.to_long('February'), 'February'
-    assert_equal Month.to_long('March'), 'March'
-    assert_equal Month.to_long('April'), 'April'
-    assert_equal Month.to_long('May'), 'May'
-    assert_equal Month.to_long('June'), 'June'
-    assert_equal Month.to_long('July'), 'July'
-    assert_equal Month.to_long('August'), 'August'
-    assert_equal Month.to_long('September'), 'September'
-    assert_equal Month.to_long('October'), 'October'
-    assert_equal Month.to_long('November'), 'November'
-    assert_equal Month.to_long('December'), 'December'
+    assert_equal 'January', Month.to_long('January')
+    assert_equal 'February', Month.to_long('February')
+    assert_equal 'March', Month.to_long('March')
+    assert_equal 'April', Month.to_long('April')
+    assert_equal 'May', Month.to_long('May')
+    assert_equal 'June', Month.to_long('June')
+    assert_equal 'July', Month.to_long('July')
+    assert_equal 'August', Month.to_long('August')
+    assert_equal 'September', Month.to_long('September')
+    assert_equal 'October', Month.to_long('October')
+    assert_equal 'November', Month.to_long('November')
+    assert_equal 'December', Month.to_long('December')
   end
   
   def test_long_downcase
-    assert_equal Month.to_long('january'), 'January'
-    assert_equal Month.to_long('february'), 'February'
-    assert_equal Month.to_long('march'), 'March'
-    assert_equal Month.to_long('april'), 'April'
-    assert_equal Month.to_long('may'), 'May'
-    assert_equal Month.to_long('june'), 'June'
-    assert_equal Month.to_long('july'), 'July'
-    assert_equal Month.to_long('august'), 'August'
-    assert_equal Month.to_long('september'), 'September'
-    assert_equal Month.to_long('october'), 'October'
-    assert_equal Month.to_long('november'), 'November'
-    assert_equal Month.to_long('december'), 'December'
+    assert_equal 'January', Month.to_long('january')
+    assert_equal 'February', Month.to_long('february')
+    assert_equal 'March', Month.to_long('march')
+    assert_equal 'April', Month.to_long('april')
+    assert_equal 'May', Month.to_long('may')
+    assert_equal 'June', Month.to_long('june')
+    assert_equal 'July', Month.to_long('july')
+    assert_equal 'August', Month.to_long('august')
+    assert_equal 'September', Month.to_long('september')
+    assert_equal 'October', Month.to_long('october')
+    assert_equal 'November', Month.to_long('november')
+    assert_equal 'December', Month.to_long('december')
   end
   
   def test_short_capitalized
-    assert_equal Month.to_long('Jan'), 'January'
-    assert_equal Month.to_long('Feb'), 'February'
-    assert_equal Month.to_long('Mar'), 'March'
-    assert_equal Month.to_long('Apr'), 'April'
-    assert_equal Month.to_long('May'), 'May'
-    assert_equal Month.to_long('Jun'), 'June'
-    assert_equal Month.to_long('Jul'), 'July'
-    assert_equal Month.to_long('Aug'), 'August'
-    assert_equal Month.to_long('Sep'), 'September'
-    assert_equal Month.to_long('Oct'), 'October'
-    assert_equal Month.to_long('Nov'), 'November'
-    assert_equal Month.to_long('Dec'), 'December'
+    assert_equal 'January', Month.to_long('Jan')
+    assert_equal 'February', Month.to_long('Feb')
+    assert_equal 'March', Month.to_long('Mar')
+    assert_equal 'April', Month.to_long('Apr')
+    assert_equal 'May', Month.to_long('May')
+    assert_equal 'June', Month.to_long('Jun')
+    assert_equal 'July', Month.to_long('Jul')
+    assert_equal 'August', Month.to_long('Aug')
+    assert_equal 'September', Month.to_long('Sep')
+    assert_equal 'October', Month.to_long('Oct')
+    assert_equal 'November', Month.to_long('Nov')
+    assert_equal 'December', Month.to_long('Dec')
   end
   
   def test_short_downcase
-    assert_equal Month.to_long('jan'), 'January'
-    assert_equal Month.to_long('feb'), 'February'
-    assert_equal Month.to_long('mar'), 'March'
-    assert_equal Month.to_long('apr'), 'April'
-    assert_equal Month.to_long('may'), 'May'
-    assert_equal Month.to_long('jun'), 'June'
-    assert_equal Month.to_long('jul'), 'July'
-    assert_equal Month.to_long('aug'), 'August'
-    assert_equal Month.to_long('sep'), 'September'
-    assert_equal Month.to_long('oct'), 'October'
-    assert_equal Month.to_long('nov'), 'November'
-    assert_equal Month.to_long('dec'), 'December'
+    assert_equal 'January', Month.to_long('jan')
+    assert_equal 'February', Month.to_long('feb')
+    assert_equal 'March', Month.to_long('mar')
+    assert_equal 'April', Month.to_long('apr')
+    assert_equal 'May', Month.to_long('may')
+    assert_equal 'June', Month.to_long('jun')
+    assert_equal 'July', Month.to_long('jul')
+    assert_equal 'August', Month.to_long('aug')
+    assert_equal 'September', Month.to_long('sep')
+    assert_equal 'October', Month.to_long('oct')
+    assert_equal 'November', Month.to_long('nov')
+    assert_equal 'December', Month.to_long('dec')
   end
   
   def test_num_as_num
-    assert_equal Month.to_long(1), 'January'
-    assert_equal Month.to_long(2), 'February'
-    assert_equal Month.to_long(3), 'March'
-    assert_equal Month.to_long(4), 'April'
-    assert_equal Month.to_long(5), 'May'
-    assert_equal Month.to_long(6), 'June'
-    assert_equal Month.to_long(7), 'July'
-    assert_equal Month.to_long(8), 'August'
-    assert_equal Month.to_long(9), 'September'
-    assert_equal Month.to_long(10), 'October'
-    assert_equal Month.to_long(11), 'November'
-    assert_equal Month.to_long(12), 'December'
+    assert_equal 'January', Month.to_long(1)
+    assert_equal 'February', Month.to_long(2)
+    assert_equal 'March', Month.to_long(3)
+    assert_equal 'April', Month.to_long(4)
+    assert_equal 'May', Month.to_long(5)
+    assert_equal 'June', Month.to_long(6)
+    assert_equal 'July', Month.to_long(7)
+    assert_equal 'August', Month.to_long(8)
+    assert_equal 'September', Month.to_long(9)
+    assert_equal 'October', Month.to_long(10)
+    assert_equal 'November', Month.to_long(11)
+    assert_equal 'December', Month.to_long(12)
   end
   
   def test_num_as_string
-    assert_equal Month.to_long('1'), 'January'
-    assert_equal Month.to_long('2'), 'February'
-    assert_equal Month.to_long('3'), 'March'
-    assert_equal Month.to_long('4'), 'April'
-    assert_equal Month.to_long('5'), 'May'
-    assert_equal Month.to_long('6'), 'June'
-    assert_equal Month.to_long('7'), 'July'
-    assert_equal Month.to_long('8'), 'August'
-    assert_equal Month.to_long('9'), 'September'
-    assert_equal Month.to_long('10'), 'October'
-    assert_equal Month.to_long('11'), 'November'
-    assert_equal Month.to_long('12'), 'December'
+    assert_equal 'January', Month.to_long('1')
+    assert_equal 'February', Month.to_long('2')
+    assert_equal 'March', Month.to_long('3')
+    assert_equal 'April', Month.to_long('4')
+    assert_equal 'May', Month.to_long('5')
+    assert_equal 'June', Month.to_long('6')
+    assert_equal 'July', Month.to_long('7')
+    assert_equal 'August', Month.to_long('8')
+    assert_equal 'September', Month.to_long('9')
+    assert_equal 'October', Month.to_long('10')
+    assert_equal 'November', Month.to_long('11')
+    assert_equal 'December', Month.to_long('12')
   end
 
   def test_crap
-    assert_equal Month.to_long('random'), nil
-    assert_equal Month.to_long(13), nil
+    assert_equal nil, Month.to_long('random')
+    assert_equal nil, Month.to_long(13)
   end
       
 end
