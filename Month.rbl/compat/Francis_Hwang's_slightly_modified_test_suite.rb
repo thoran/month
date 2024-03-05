@@ -4,13 +4,14 @@
 # 1. This is Francis Hwang's test suite with the following changes...
 #   a. The load path so as it runs from within the compat directory.
 #   b. /require 'month'/require 'Month'/.
-#   c. test_to_s altered to make use of to_long, not to_short.
+#   c. Swapped out "require 'test/unit' for require 'minitest/autorun'".
+#   d. test_to_s altered to make use of to_long, not to_short.
 
-$: << File.expand_path('..')
+$: << File.expand_path('../lib')
 require 'Month'
-require 'test/unit'
+require 'minitest/autorun'
 
-class TestMonth < Test::Unit::TestCase
+class TestMonth < MiniTest::Test
 	def setup
 		@jan2000 = Month.new 2000, 1
 		@dec2000 = Month.new 2000, 12
