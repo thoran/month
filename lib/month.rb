@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.8
+# 0.3.9
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -21,6 +21,8 @@
 # 10. self#day is also much compressed by employing an array lookup.  
 # 11. self#day_short and self#wday are also now similarly compressed.  
 # 12. self#day_short and self#wday now also accept short, long, and num_as_string values for the month parameter.  
+# 13. Compressed self#day, self#day_short, and self#wday by using some assignment kung-fu.  
+# 14. Finally figured out how to compress self#dates in a manner similar to all the other methods---and by using another of Month's class methods too!  So they must be useful!  Although self#dates could still do with a little bit of a tidy-up...  
 
 class Month
   
@@ -41,7 +43,6 @@ class Month
   DAY_NAMES_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   DAY_NAMES_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   WEEK_DAY_NUMBERS = 0..6
-  
   
   def self.to_long(month)
     if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
@@ -88,23 +89,15 @@ class Month
   def self.days_in_month(month, year = Date.today.year)
     self.days(month, year)
   end
-    
+  
   def self.dates(day, month = Date.today.month, year = Date.today.year)
     unconverted_day = day
     day = day.to_s.capitalize
-    month = Month.to_num(month)
+    month = self.to_num(month)
     if DAY_NAMES_SHORT.member?(day) || DAY_NAMES_LONG.member?(day) || (WEEK_DAY_NUMBERS.member?(day.to_i) && day =~ /\d/) || (WEEK_DAY_NUMBERS.member?(day.to_i) && unconverted_day.class == Fixnum)
       list_of_dates = []
-      Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
-        case date.wday
-          when 0; list_of_dates << date.mday if ('Sun' == day || 'Sunday' == day || '0' == day)
-          when 1; list_of_dates << date.mday if ('Mon' == day || 'Monday' == day || '1' == day) 
-          when 2; list_of_dates << date.mday if ('Tue' == day || 'Tuesday' == day || '2' == day)
-          when 3; list_of_dates << date.mday if ('Wed' == day || 'Wednesday' == day || '3' == day)
-          when 4; list_of_dates << date.mday if ('Thu' == day || 'Thursday' == day || '4' == day)
-          when 5; list_of_dates << date.mday if ('Fri' == day || 'Friday' == day || '5' == day)
-          when 6; list_of_dates << date.mday if ('Sat' == day || 'Saturday' == day || '6' == day)
-        end
+      Date.new(year, month, 1).upto(Date.new(year, month, self.days(month, year))) do |date|
+        list_of_dates << date.mday if date.wday == self.wday(date.mday)
       end
       return list_of_dates
     else
@@ -113,9 +106,7 @@ class Month
   end
   
   def self.day(date, month = Date.today.month, year = Date.today.year)
-    date = date.to_i
-    month = Month.to_num(month)
-    year = year.to_i
+    date, month, year = date.to_i, self.to_num(month), year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
       return DAY_NAMES_LONG[Date.new(year, month, date).wday]
     else
@@ -128,9 +119,7 @@ class Month
   end
   
   def self.day_short(date, month = Date.today.month, year = Date.today.year)
-    date = date.to_i
-    month = Month.to_num(month)
-    year = year.to_i
+    date, month, year = date.to_i, self.to_num(month), year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
       return DAY_NAMES_SHORT[Date.new(year, month, date).wday]
     else
@@ -139,9 +128,7 @@ class Month
   end
   
   def self.wday(date, month = Date.today.month, year = Date.today.year)
-    date = date.to_i
-    month = Month.to_num(month)
-    year = year.to_i
+    date, month, year = date.to_i, self.to_num(month), year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
       return Date.new(year, month, date).wday
     else
