@@ -1,7 +1,7 @@
 # Month
 
-# 20061003
-# 0.5.0
+# 20061004
+# 0.5.1
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to do the conversions.  
 
@@ -12,6 +12,7 @@
 # 1. Compressed the if-elsif-elsif stuff in self#dates and self#cdates.  
 # 2. Added a default to self#days (and self#days_in_month) which allows the number of days in the current month to be returned as the default.  
 # 3. Did the same (added a default) for self#to_long, #to_short, #to_num, and #to_number.  
+# 4. Added self#date and self#cdate, which returns a single date based on an ordinal day, such as the 'First Monday', or 'Third Friday.  
 
 # Todo: 
 # 1. It isn't essential that this be done, but it might be nice to acknowledge that self#cdates does not need to check whether the input day is a Fixnum or not, since it is using ISO day representation and there is no zero value as it starts at 1.  
@@ -151,6 +152,42 @@ class Month
       list_of_dates << date.mday if date.cwday == weekday_number
     end
     return list_of_dates
+  end
+  
+  def self.date(which_day, day, month = Date.today.month, year = Date.today.year)
+    all = self.dates(day, month, year)
+    case which_day.downcase
+      when 'first'; return all[0]
+      when 'second'; return all[1]
+      when 'third'; return all[2]
+      when 'fourth'; return all[3]
+      when 'fifth'; return all[4]
+      when 'last'; return all[all.size - 1]
+      when 'second last'; return all[all.size - 2]
+      when 'third last'; return all[all.size - 3]
+      when 'fourth last'; return all[all.size - 4]
+      when 'penultimate'; return all[all.size - 2]
+      when 'ultimate'; return all[all.size - 1]
+      else; return nil
+    end
+  end
+  
+  def self.cdate(which_day, day, month = Date.today.month, year = Date.today.year)
+    all = self.cdates(day, month, year)
+    case which_day.downcase
+      when 'first'; return all[0]
+      when 'second'; return all[1]
+      when 'third'; return all[2]
+      when 'fourth'; return all[3]
+      when 'fifth'; return all[4]
+      when 'last'; return all[all.size - 1]
+      when 'second last'; return all[all.size - 2]
+      when 'third last'; return all[all.size - 3]
+      when 'fourth last'; return all[all.size - 4]
+      when 'penultimate'; return all[all.size - 2]
+      when 'ultimate'; return all[all.size - 1]
+      else; return nil
+    end
   end
   
 end
