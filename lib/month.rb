@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.4
+# 0.3.5
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -14,6 +14,7 @@
 # 3. I wondering whether the employment of elsif and an explicit else clause would help at all...  
 # 4. I thought I'd apply the same sorts of changes to month lookups to day lookups...  
 # 5. Producing some interesting attempts at consolidating the code.  See particularly MONTH_DAYS and self#days.  
+# 6. I somehow knew that I couldn't call a number...  
 
 class Month
   
@@ -67,7 +68,10 @@ class Month
   end
   
   def self.days(month, year = Date.today.year)
-    MONTH_DAYS[to_num(month) - 1].call(year)
+    case e = MONTH_DAYS[to_num(month) - 1]
+      when Fixnum; return e
+      else; return e.call(year)
+    end
   end
   
   def self.days_in_month(month, year = Date.today.year)
