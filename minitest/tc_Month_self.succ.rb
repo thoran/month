@@ -19,7 +19,7 @@ class TC_Month_self_succ < MiniTest::Unit::TestCase
     when 9; assert_equal Month.new(10).month, Month.succ.month
     when 10; assert_equal Month.new(11).month, Month.succ.month
     when 11; assert_equal Month.new(12).month, Month.succ.month
-    when 12; assert_equal Month.new(1, today.year + 1).month, Month.succ.month
+    when 12; assert_equal Month.new(today.year + 1, 1).month, Month.succ.month
     end
   end
   

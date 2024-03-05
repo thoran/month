@@ -1,6 +1,6 @@
 # tc_Month_self.next
 
-# 20110824
+# 20110824, 1203
 # 0.9.0
 
 class TC_Month_self_next < MiniTest::Unit::TestCase
@@ -19,7 +19,7 @@ class TC_Month_self_next < MiniTest::Unit::TestCase
     when 9; assert_equal Month.new(10).month, Month.next.month
     when 10; assert_equal Month.new(11).month, Month.next.month
     when 11; assert_equal Month.new(12).month, Month.next.month
-    when 12; assert_equal Month.new(1, today.year + 1).month, Month.next.month
+    when 12; assert_equal Month.new(today.year + 1, 1).month, Month.next.month
     end
   end
   

@@ -1,6 +1,6 @@
 # Month
 
-# 20110823, 24
+# 20110823, 24, 0905
 # 0.9.0
 
 require 'date'
@@ -9,7 +9,7 @@ class Month
   
   module Constants
     
-    VERSION = '0.8.1' unless defined?(VERSION)
+    VERSION = '0.9.0' unless defined?(VERSION)
     
     MONTH_NAMES_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] unless defined?(MONTH_NAMES_LONG)
     MONTH_NAMES_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] unless defined?(MONTH_NAMES_SHORT)
