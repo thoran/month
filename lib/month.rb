@@ -1,7 +1,7 @@
 # Month
 
 # 20061004
-# 0.5.2
+# 0.5.3
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to do the conversions.  
 
@@ -14,6 +14,7 @@
 # 3. Did the same (added a default) for self#to_long, #to_short, #to_num, and #to_number.  
 # 4. Added self#date and self#cdate, which returns a single date based on an ordinal day, such as the 'First Monday', or 'Third Friday.  
 # 5. Added more options to self#date and self#cdate inputs and combined some equivalent ones.  
+# 6. Put in MONTH_NUMBERS_AS_STRINGS as per Todo #2.  This may save a bit of time since while there doesn't need to be any collect operation on the MONTH_NUMBERS range, there is now a to_a method applied and I'm not sure which is the more efficient.  I can change it back if need be...  
 
 # Todo: 
 # 1. It isn't essential that this be done, but it might be nice to acknowledge that self#cdates does not need to check whether the input day is a Fixnum or not, since it is using ISO day representation and there is no zero value as it starts at 1, it means that non-numeric strings will not convert to zero.  I could also consider using #to_str inside a begin-end block or something like that...  
@@ -36,6 +37,7 @@ class Month
   MONTH_NAMES_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   MONTH_NAMES_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   MONTH_NUMBERS = 1..12
+  MONTH_NUMBERS_AS_STRINGS = '1'..'12'
   
   MONTH_DAYS = [31, Proc.new {|year| Date.leap?(year) ? 29 : 28}, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   
@@ -55,7 +57,7 @@ class Month
     if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
       elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
       elsif i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_LONG[i]
-      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_LONG[i]
+      elsif i = MONTH_NUMBERS_AS_STRINGS.to_a.index(month.to_s); return MONTH_NAMES_LONG[i]
       else; return nil
     end
   end
@@ -64,7 +66,7 @@ class Month
     if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i]
       elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i]
       elsif i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_SHORT[i]
-      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_SHORT[i]
+      elsif i = MONTH_NUMBERS_AS_STRINGS.to_a.index(month.to_s); return MONTH_NAMES_SHORT[i]
       else; return nil
     end
   end
@@ -73,7 +75,7 @@ class Month
     if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return i+1
       elsif i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return i+1
       elsif i = MONTH_NUMBERS.to_a.index(month); return i+1
-      elsif i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return i+1
+      elsif i = MONTH_NUMBERS_AS_STRINGS.to_a.index(month.to_s); return i+1
       else; return nil
     end
   end
