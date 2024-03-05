@@ -3,7 +3,7 @@
 # 20110825
 # 0.9.0
 
-class TC_Month_self_to_i < Test::Unit::TestCase
+class TC_Month_self_to_i < MiniTest::Unit::TestCase
   
   def test_long_capitalized
     assert_equal 1, Month.to_i('January')

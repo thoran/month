@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_prior < Test::Unit::TestCase
+class TC_Month_self_prior < MiniTest::Unit::TestCase
   
   def test_self_prior
     today = Date.today

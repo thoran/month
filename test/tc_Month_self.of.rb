@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_of < Test::Unit::TestCase
+class TC_Month_self_of < MiniTest::Unit::TestCase
   
   def test_long_capitalized
     assert_equal true, Month.of('January') == Month.new(1)

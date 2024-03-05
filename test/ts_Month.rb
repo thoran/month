@@ -9,7 +9,7 @@
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..')))
 
 require 'Month'
-require 'test/unit'
-
+#require 'test/unit'
+require 'minitest/autorun'
 tests = Dir["**/*.rb"].reject!{|file| file == File.basename(__FILE__)}
 tests.each{|test| require test}

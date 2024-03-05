@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_prior < Test::Unit::TestCase
+class TC_Month_prior < MiniTest::Unit::TestCase
   
   def test_prior
     assert_equal Month.new(2010, 12), Month.new(2011, 1).prior

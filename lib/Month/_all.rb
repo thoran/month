@@ -1,6 +1,6 @@
 # Month/_all
 
-# 20110822, 23, 24
+# 20110822, 23, 24, 27
 # 0.9.0
 
 load 'Month/begin_date.rb'
@@ -25,6 +25,7 @@ load 'Month/finish.rb'
 load 'Month/finish_date.rb'
 load 'Month/finish_of_month.rb'
 load 'Month/finish_of_the_month.rb'
+load 'Month/hash.rb'
 load 'Month/initialize.rb'
 load 'Month/last.rb'
 load 'Month/method_missing.rb'

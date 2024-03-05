@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_day_short < Test::Unit::TestCase
+class TC_Month_self_day_short < MiniTest::Unit::TestCase
     
   def test_num_as_num
     assert_equal 'Sun', Month.day_short(1, 10, 2006)

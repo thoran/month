@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_day_shortest < Test::Unit::TestCase
+class TC_Month_self_day_shortest < MiniTest::Unit::TestCase
     
   def test_num_as_num
     assert_equal 'Su', Month.day_shortest(1, 10, 2006)

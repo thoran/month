@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_minus < Test::Unit::TestCase
+class TC_Month_minus < MiniTest::Unit::TestCase
   
   def test_minus
     assert_equal Month.new(2010, 9), Month.new(2011, 1) - 4

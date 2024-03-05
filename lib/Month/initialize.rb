@@ -1,13 +1,14 @@
 # Month/initialize
 # Month#initialize
 
-# 20110822, 24, 25
+# 20110822, 24, 25, 27
 # 0.9.0
 
 # Changes since 0.8: 
 # 1. Version number bump to 0.9.0.  
 # 2. See the Notes...  
 # 3. + custom ArgumentError handling.  
+# 4. It now checks that @month is in the range of 1 to 12
 
 # Notes: 
 # 1. With a view to compatibility with Francis Hwang's version of a Month class, and as a nod to Ruby's Date class, I have made it possible to supply the year optionally, but first, rather than second if there are two arguments.  
@@ -29,6 +30,7 @@ class Month
         else; raise ArgumentError, "too many arguments (#{args.size} for 0, 1, or 2)"
       end
     )
+    fail unless (1..12).include?(@month)
   end
   
 end

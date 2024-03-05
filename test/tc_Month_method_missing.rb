@@ -3,7 +3,7 @@
 # 20110825
 # 0.9.0
 
-class TC_Month_method_missing < Test::Unit::TestCase
+class TC_Month_method_missing < MiniTest::Unit::TestCase
   
   def test_method_missing
     if Date.today.year == 2011 && Date.today.month == 1

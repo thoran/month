@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_to_short < Test::Unit::TestCase
+class TC_Month_to_short < MiniTest::Unit::TestCase
   
   def test_to_short
     assert_equal 'Jan', Month.new(2006, 1).to_short

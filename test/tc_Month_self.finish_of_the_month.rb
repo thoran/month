@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_finish_of_the_month < Test::Unit::TestCase
+class TC_Month_self_finish_of_the_month < MiniTest::Unit::TestCase
   
   def test_self_finish_of_the_month
     assert_equal Date.new(2006, 1, 31), Month.finish_of_the_month(1, 2006)

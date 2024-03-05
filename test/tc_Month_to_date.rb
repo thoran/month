@@ -3,7 +3,7 @@
 # 20110825
 # 0.9.0
 
-class TC_Month_to_date < Test::Unit::TestCase
+class TC_Month_to_date < MiniTest::Unit::TestCase
   
   def test_plus
     assert_equal Date.new(2010, 12, 1).year, Month.new(2010, 12).to_date.year

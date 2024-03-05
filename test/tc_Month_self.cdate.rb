@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_cdate < Test::Unit::TestCase
+class TC_Month_self_cdate < MiniTest::Unit::TestCase
   
   def test_self_cdate
     assert_equal 3, Month.cdate('First', 'Monday', 1, 2011)

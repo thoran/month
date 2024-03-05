@@ -6,7 +6,7 @@
 # Changes since 0.8
 # 1. Reversed arguments for Month.new.  
 
-class TC_Month_beginning < Test::Unit::TestCase
+class TC_Month_beginning < MiniTest::Unit::TestCase
   
   def test_beginning
     assert_equal Date.new(2006, 1, 1), Month.new(2006, 1).beginning

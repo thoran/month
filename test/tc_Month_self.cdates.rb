@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_cdates < Test::Unit::TestCase
+class TC_Month_self_cdates < MiniTest::Unit::TestCase
   
   def test_no_day
     assert_equal (1..31).collect{|date| date}, Month.cdates(10, 2006)

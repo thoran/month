@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_self_days_in_month < Test::Unit::TestCase
+class TC_Month_self_days_in_month < MiniTest::Unit::TestCase
   
   def test_long_capitalized
     assert_equal 31, Month.days_in_month('January')

@@ -3,7 +3,7 @@
 # 20110824, 25
 # 0.9.0
 
-class TC_Month_self_method_missing < Test::Unit::TestCase
+class TC_Month_self_method_missing < MiniTest::Unit::TestCase
   
   def test_self_method_missing_for_months
     assert_equal Month.new(1).month, Month.january.month

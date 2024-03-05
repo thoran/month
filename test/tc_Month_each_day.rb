@@ -6,7 +6,7 @@
 # Changes since 0.8
 # 1. Reversed arguments for Month.new.  
 
-class TC_Month_each_day < Test::Unit::TestCase
+class TC_Month_each_day < MiniTest::Unit::TestCase
   
   def test_each_day
     assert_equal 1..31, Month.new(2006, 1).each_day{}

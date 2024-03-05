@@ -3,7 +3,7 @@
 # 20110824
 # 0.9.0
 
-class TC_Month_to_long < Test::Unit::TestCase
+class TC_Month_to_long < MiniTest::Unit::TestCase
   
   def test_to_long
     assert_equal 'January', Month.new(2006, 1).to_long

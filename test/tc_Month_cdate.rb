@@ -6,7 +6,7 @@
 # Changes since 0.8
 # 1. Reversed arguments for Month.new.  
 
-class TC_Month_cdate < Test::Unit::TestCase
+class TC_Month_cdate < MiniTest::Unit::TestCase
   
   def test_cdate
     assert_equal 3, Month.new(2011, 1).cdate('First', 'Monday')
