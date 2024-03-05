@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.7
+# 0.3.8
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -20,6 +20,7 @@
 # 9. self#day now accepts short, long, and num_as_string values for the month parameter.  
 # 10. self#day is also much compressed by employing an array lookup.  
 # 11. self#day_short and self#wday are also now similarly compressed.  
+# 12. self#day_short and self#wday now also accept short, long, and num_as_string values for the month parameter.  
 
 class Month
   
@@ -128,7 +129,7 @@ class Month
   
   def self.day_short(date, month = Date.today.month, year = Date.today.year)
     date = date.to_i
-    month = month.to_i
+    month = Month.to_num(month)
     year = year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
       return DAY_NAMES_SHORT[Date.new(year, month, date).wday]
@@ -139,7 +140,7 @@ class Month
   
   def self.wday(date, month = Date.today.month, year = Date.today.year)
     date = date.to_i
-    month = month.to_i
+    month = Month.to_num(month)
     year = year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
       return Date.new(year, month, date).wday
