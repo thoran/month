@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.1
+# 0.3.2
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -10,6 +10,7 @@
 
 # Changes: 
 # 1. I realized that the index of the class constants was the same as the numeric value for the months and that this provided the opportunity for vastly reducing the length of this code...  This is much shorter and much more Ruby-like!  
+# 2. Tests were failing because I forgot to account for zero-base indexed arrays!  
 
 class Month
   
@@ -39,10 +40,10 @@ class Month
   end
   
   def self.to_num(month)
-    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return i; end
-    if i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return i; end
-    if i = MONTH_NUMBERS.to_a.index(month); return i; end
-    if i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return i; end
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return i+1; end
+    if i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return i+1; end
+    if i = MONTH_NUMBERS.to_a.index(month); return i+1; end
+    if i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return i+1; end
   end
   
   def self.to_number(month)
