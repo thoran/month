@@ -3,13 +3,14 @@
 # Test case: Month#to_number.  
 # 
 # 20061001
-# 0.0.0
+# 0.0.1
 #
 # Changes: 
+# 1. I didn't test for different capitalizations before and it was only because of one failure that I picked up the failings of version 0.0.5 of the Month class.  
 
 class TC_Month_To_Num < Test::Unit::TestCase
   
-  def test_long
+  def test_long_capitalized
     assert_equal Month.to_number('January'), 1
     assert_equal Month.to_number('February'), 2
     assert_equal Month.to_number('March'), 3
@@ -24,7 +25,22 @@ class TC_Month_To_Num < Test::Unit::TestCase
     assert_equal Month.to_number('December'), 12
   end
   
-  def test_short
+  def test_long_downcase
+    assert_equal Month.to_number('january'), 1
+    assert_equal Month.to_number('february'), 2
+    assert_equal Month.to_number('march'), 3
+    assert_equal Month.to_number('april'), 4
+    assert_equal Month.to_number('may'), 5
+    assert_equal Month.to_number('june'), 6
+    assert_equal Month.to_number('july'), 7
+    assert_equal Month.to_number('august'), 8
+    assert_equal Month.to_number('september'), 9
+    assert_equal Month.to_number('october'), 10
+    assert_equal Month.to_number('november'), 11
+    assert_equal Month.to_number('december'), 12
+  end
+  
+  def test_short_capitalized
     assert_equal Month.to_number('Jan'), 1
     assert_equal Month.to_number('Feb'), 2
     assert_equal Month.to_number('Mar'), 3
@@ -37,6 +53,21 @@ class TC_Month_To_Num < Test::Unit::TestCase
     assert_equal Month.to_number('Oct'), 10
     assert_equal Month.to_number('Nov'), 11
     assert_equal Month.to_number('Dec'), 12
+  end
+  
+  def test_short_downcase
+    assert_equal Month.to_number('jan'), 1
+    assert_equal Month.to_number('feb'), 2
+    assert_equal Month.to_number('mar'), 3
+    assert_equal Month.to_number('apr'), 4
+    assert_equal Month.to_number('may'), 5
+    assert_equal Month.to_number('jun'), 6
+    assert_equal Month.to_number('jul'), 7
+    assert_equal Month.to_number('aug'), 8
+    assert_equal Month.to_number('sep'), 9
+    assert_equal Month.to_number('oct'), 10
+    assert_equal Month.to_number('nov'), 11
+    assert_equal Month.to_number('dec'), 12
   end
   
   def test_num_as_num

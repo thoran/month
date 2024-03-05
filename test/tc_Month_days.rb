@@ -3,13 +3,14 @@
 # Test case: Month#days.  
 # 
 # 20061001
-# 0.0.0
+# 0.0.1
 #
 # Changes: 
+# 1. I didn't test for different capitalizations before and it was only because of one failure that I picked up the failings of version 0.0.5 of the Month class.  
 
 class TC_Month_Days < Test::Unit::TestCase
   
-  def test_long
+  def test_long_capitalized
     assert_equal Month.days('January'), 31
     assert_equal Month.days('February', 2007), 28
     assert_equal Month.days('February', 2008), 29
@@ -25,7 +26,23 @@ class TC_Month_Days < Test::Unit::TestCase
     assert_equal Month.days('December'), 31
   end
   
-  def test_short
+  def test_long_downcase
+    assert_equal Month.days('january'), 31
+    assert_equal Month.days('february', 2007), 28
+    assert_equal Month.days('february', 2008), 29
+    assert_equal Month.days('march'), 31
+    assert_equal Month.days('april'), 30
+    assert_equal Month.days('may'), 31
+    assert_equal Month.days('june'), 30
+    assert_equal Month.days('july'), 31
+    assert_equal Month.days('august'), 31
+    assert_equal Month.days('september'), 30
+    assert_equal Month.days('october'), 31
+    assert_equal Month.days('november'), 30
+    assert_equal Month.days('december'), 31
+  end
+  
+  def test_short_capitalized
     assert_equal Month.days('Jan'), 31
     assert_equal Month.days('Feb', 2007), 28
     assert_equal Month.days('Feb', 2008), 29
@@ -39,6 +56,22 @@ class TC_Month_Days < Test::Unit::TestCase
     assert_equal Month.days('Oct'), 31
     assert_equal Month.days('Nov'), 30
     assert_equal Month.days('Dec'), 31
+  end
+  
+  def test_short_downcase
+    assert_equal Month.days('jan'), 31
+    assert_equal Month.days('feb', 2007), 28
+    assert_equal Month.days('feb', 2008), 29
+    assert_equal Month.days('mar'), 31
+    assert_equal Month.days('apr'), 30
+    assert_equal Month.days('may'), 31
+    assert_equal Month.days('jun'), 30
+    assert_equal Month.days('jul'), 31
+    assert_equal Month.days('aug'), 31
+    assert_equal Month.days('sep'), 30
+    assert_equal Month.days('oct'), 31
+    assert_equal Month.days('nov'), 30
+    assert_equal Month.days('dec'), 31
   end
   
   def test_num_as_num
