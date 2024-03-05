@@ -1,7 +1,8 @@
+# Month.rb
 # Month
 
-# 20140506, 08
-# 0.9.3
+# 20140606
+# 0.9.4
 
 # Description: Month does conversions of various formats for the representation of months and can when instantiated represent a specific month in time.  
 
@@ -46,9 +47,14 @@
 # 33. Made a similar change here as per 32.
 # 34. Removed all date, version, and change information from each library file as that should go here only.
 # 35. Removed all date, version, and change information from each test file as that should go here only.
+# 3/4
+# 36. + Date#to_month, and test code.
+# 37. + Month.from_date, to enable Date#to_month, and test code.
+# 38. + require 'Date/to_month' here and of a different fashion in the test code.
 
 lib_dir = File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
+require 'Date/to_month'
 require 'Month/Constants'
 require 'Month/_all'
