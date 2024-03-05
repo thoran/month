@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.0
+# 0.3.1
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -9,7 +9,7 @@
 # 1. Some of the later methods might be better moved to Date or another class...  
 
 # Changes: 
-# 1. I realized that the index of the class constants was the same as the numeric value for the months and that this provided the opportunity for vastly reducing the length of this code...  
+# 1. I realized that the index of the class constants was the same as the numeric value for the months and that this provided the opportunity for vastly reducing the length of this code...  This is much shorter and much more Ruby-like!  
 
 class Month
   
@@ -25,96 +25,24 @@ class Month
   WEEK_DAY_NUMBERS = 0..6
   
   def self.to_long(month)
-    case true
-      when i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
-      when i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]
-      when i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_LONG[i]
-      when i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_LONG[i]
-      else; return nil
-    end
-  end
-    
-  def self.to_short(month)
-    month = month.to_s
-    case month
-      when /\D/
-        if (MONTH_NAMES_SHORT.to_a.member?(month.capitalize) || MONTH_NAMES_LONG.to_a.member?(month.capitalize))
-          case month.capitalize
-            when 'Jan', 'January'; short_month = 'Jan'
-            when 'Feb', 'February'; short_month = 'Feb'
-            when 'Mar', 'March'; short_month = 'Mar'
-            when 'Apr', 'April'; short_month = 'Apr'
-            when 'May'; short_month = 'May'
-            when 'Jun', 'June'; short_month = 'Jun'
-            when 'Jul', 'July'; short_month = 'Jul'
-            when 'Aug', 'August'; short_month = 'Aug'
-            when 'Sep', 'September'; short_month = 'Sep'
-            when 'Oct', 'October'; short_month = 'Oct'
-            when 'Nov', 'November'; short_month = 'Nov'
-            when 'Dec', 'December'; short_month = 'Dec'
-          end
-          return short_month
-        else
-          return nil
-        end
-      when /\d/
-        if MONTH_NUMBERS.to_a.member?(month.to_i)
-          case month
-            when '1'; short_month = 'Jan'
-            when '2'; short_month = 'Feb'
-            when '3'; short_month = 'Mar'
-            when '4'; short_month = 'Apr'
-            when '5'; short_month = 'May'
-            when '6'; short_month = 'Jun'
-            when '7'; short_month = 'Jul'
-            when '8'; short_month = 'Aug'
-            when '9'; short_month = 'Sep'
-            when '10'; short_month = 'Oct'
-            when '11'; short_month = 'Nov'
-            when '12'; short_month = 'Dec'
-          end
-          return short_month
-        else
-          return nil
-        end
-      else
-        return nil
-      end
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]; end
+    if i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_LONG[i]; end
+    if i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_LONG[i]; end
+    if i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_LONG[i]; end
   end
   
-  # Consider putting an error in here for when there is no sensible result, rather than returning nil.  
+  def self.to_short(month)
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i]; end
+    if i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return MONTH_NAMES_SHORT[i]; end
+    if i = MONTH_NUMBERS.to_a.index(month); return MONTH_NAMES_SHORT[i]; end
+    if i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return MONTH_NAMES_SHORT[i]; end
+  end
+  
   def self.to_num(month)
-    month = month.to_s
-    case month
-      when /\D/ 
-        if (MONTH_NAMES_SHORT.to_a.member?(month.capitalize) || MONTH_NAMES_LONG.to_a.member?(month.capitalize))
-          case month.capitalize
-            when 'Jan', 'January'; number_month = 1
-            when 'Feb', 'February'; number_month = 2
-            when 'Mar', 'March'; number_month = 3
-            when 'Apr', 'April'; number_month = 4
-            when 'May'; number_month = 5
-            when 'Jun', 'June'; number_month = 6
-            when 'Jul', 'July'; number_month = 7
-            when 'Aug', 'August'; number_month = 8
-            when 'Sep', 'September'; number_month = 9
-            when 'Oct', 'October'; number_month = 10
-            when 'Nov', 'November'; number_month = 11
-            when 'Dec', 'December'; number_month = 12
-          end
-          return number_month
-        else
-          return nil
-        end
-      when /\d/
-        if MONTH_NUMBERS.to_a.member?(month.to_i)
-          return month.to_i
-        else
-          return nil
-        end
-      else
-        return nil
-      end
+    if i = MONTH_NAMES_SHORT.index(month.to_s.capitalize); return i; end
+    if i = MONTH_NAMES_LONG.index(month.to_s.capitalize); return i; end
+    if i = MONTH_NUMBERS.to_a.index(month); return i; end
+    if i = MONTH_NUMBERS.collect {|e| e.to_s }.index(month.to_s); return i; end
   end
   
   def self.to_number(month)
