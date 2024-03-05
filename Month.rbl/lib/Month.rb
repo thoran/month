@@ -1,8 +1,8 @@
 # Month.rb
 # Month
 
-# 20171008
-# 0.9.5
+# 20191013
+# 0.9.6
 
 # Description: Month does conversions of various formats for the representation of months and can when instantiated represent a specific month in time.
 
@@ -53,6 +53,10 @@
 # 38. - Month/_all.rb and copied the contents here.
 # 4/5
 # 39. ~ lib/Month.rb to make use of a loop, rather than explicitly loading each library file.
+# 5/6
+# 40. + Month#last_year, after it was sitting in a file MonthPlus.rb for years.
+# 41. + Month#next_year, after it was sitting in a file MonthPlus.rb for years.
+# 42. + Date#to_month, after it was sitting in a file MonthPlus.rb for years.
 
 lib_dir = File.expand_path(File.join(File.dirname(__FILE__)))
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
