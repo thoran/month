@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.1.0
+# 0.1.1
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -12,6 +12,11 @@
 # Changes: 
 # 1. I added the method dates which returns the dates for which it is a certain day.  
 # 2. As I was doing this I added an alias method #date, since #day and #mday don't seem very satisfying (even if it appears (too?) confusing)...  And yet I haven't used it!  Yet.  
+# 3. I added the method day, which returns the day of the week for a particular date.  
+# 4. I added the range of numeric days as a class variable to assist with the sanity test for the inputs in self#day.  
+
+# Discussion: 
+# 1. Some of the later methods might be better moved to Date or another class...  
 
 class Date
   
@@ -26,6 +31,7 @@ class Month
   @@long_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   @@short_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   @@number_months = 1..12
+  @@number_days = 1..31
   
   def self.to_long(month)
     month = month.to_s
@@ -176,8 +182,7 @@ class Month
       when to_long(10), to_short(10), to_num(10).to_s; days_in_month = 31
       when to_long(11), to_short(11), to_num(11).to_s; days_in_month = 30
       when to_long(12), to_short(12), to_num(12).to_s; days_in_month = 31
-      else
-        return nil
+      else return nil
     end
     return days_in_month
   end
@@ -198,8 +203,29 @@ class Month
         when 4; 'Thursday' == day ? list_of_dates << date.mday
         when 5; 'Friday' == day ? list_of_dates << date.mday
         when 6; 'Saturday' == day ? list_of_dates << date.mday
+      end
     end
     return list_of_dates
+  end
+  
+  def self.day(date, month = Date.today.month, year = Date.today.year)
+    date = date.to_i
+    month = month.to_i
+    year = year.to_i
+    if @@number_days.to_a.member?(date) && @@number_months.to_a.member?(month) && (year =~ /\d/)
+      case Date.new(year, month, date).wday
+        when 0; return 'Sunday'
+        when 1; return 'Monday'
+        when 2; return 'Tuesday'
+        when 3; return 'Wednesday'
+        when 4; return 'Thursday'
+        when 5; return 'Friday'
+        when 6; return 'Saturday'
+        else return nil
+      end
+    else
+      return nil
+    end
   end
   
 end
