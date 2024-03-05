@@ -101,7 +101,7 @@ class Month
   end
   
   # Consider putting an error in here for when there is no sensible result, rather than returning nil.  
-  def self.to_number(month)
+  def self.to_num(month)
     month = month.to_s
     case month
       when (/\w/ && /\D/) 
@@ -135,22 +135,32 @@ class Month
       end
   end
   
-  def days(month, year = Date.today.year)
+  def self.to_number(month)
+    self.to_num(month)
+  end
+  
+  def self.days(month, year = Date.today.year)
     case month
-      when '1'; days = 31
-      when '2'; days = 28  # Need to check for leap years; and should I bother with millenia?
-      when '3'; days = 31
-      when '4'; days = 30
-      when '5'; days = 31
-      when '6'; days = 30
-      when '7'; days = 31
-      when '8'; days = 31
-      when '9'; days = 30
-      when '10'; days = 31
-      when '11'; days = 30
-      when '12'; days = 31
+      when to_long(1), to_short(1), to_num(1); days_in_month = 31
+      when to_long(2), to_short(2), to_num(2); Date.leap?(year) ? days_in_month = 29 : days_in_month = 28
+      when to_long(3), to_short(3), to_num(3); days_in_month = 31
+      when to_long(4), to_short(4), to_num(4); days_in_month = 30
+      when to_long(5), to_short(5), to_num(5); days_in_month = 31
+      when to_long(6), to_short(6), to_num(6); days_in_month = 30
+      when to_long(7), to_short(7), to_num(7); days_in_month = 31
+      when to_long(8), to_short(8), to_num(8); days_in_month = 31
+      when to_long(9), to_short(9), to_num(9); days_in_month = 30
+      when to_long(10), to_short(10), to_num(10); days_in_month = 31
+      when to_long(11), to_short(11), to_num(11); days_in_month = 30
+      when to_long(12), to_short(12), to_num(12); days_in_month = 31
+      else
+        return nil
     end
-    return days
+    return days_in_month
+  end
+  
+  def self.days_in_month(month, year = Date.today.year)
+    self.days(month, year)
   end
   
 end
