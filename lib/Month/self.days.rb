@@ -13,11 +13,11 @@ class Month
     def days(month = Date.today.month, year = Date.today.year)
       if i = to_num(month)
         case e = MONTH_DAYS[i - 1]
-        when Fixnum; return e
-        else; return e.call(year)
+        when Fixnum; e
+        else; e.call(year)
         end
       else
-        return nil
+        nil
       end
     end
     
