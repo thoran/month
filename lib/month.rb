@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.2.0
+# 0.2.1
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -10,7 +10,9 @@
 
 # Changes: 
 # 1. Made the class variables class contants and did a little rearranging and renaming.  
-
+# 2. Added the method self#wday which returns a number rather than the name of the day of the week.  
+# 3. Added self#day_long as a (sort of an) alias of self#day.  
+# 4. Added self#day_short which returns the short name of the day of the week.  
 
 class Month
   
@@ -218,6 +220,50 @@ class Month
         when 4; return 'Thursday'
         when 5; return 'Friday'
         when 6; return 'Saturday'
+        else return nil
+      end
+    else
+      return nil
+    end
+  end
+  
+  def self.day_long(date, month = Date.today.month, year = Date.today.year)
+    self.day(date, month, year)
+  end
+  
+  def self.day_short(date, month = Date.today.month, year = Date.today.year)
+    date = date.to_i
+    month = month.to_i
+    year = year.to_i
+    if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
+      case Date.new(year, month, date).wday
+        when 0; return 'Sun'
+        when 1; return 'Mon'
+        when 2; return 'Tue'
+        when 3; return 'Wed'
+        when 4; return 'Thu'
+        when 5; return 'Fri'
+        when 6; return 'Sat'
+        else return nil
+      end
+    else
+      return nil
+    end
+  end
+  
+  def self.wday(date, month = Date.today.month, year = Date.today.year)
+    date = date.to_i
+    month = month.to_i
+    year = year.to_i
+    if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
+      case Date.new(year, month, date).wday
+        when 0; return 0
+        when 1; return 1
+        when 2; return 2
+        when 3; return 3
+        when 4; return 4
+        when 5; return 5
+        when 6; return 6
         else return nil
       end
     else
