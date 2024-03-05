@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.9
+# 0.3.10
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -23,6 +23,7 @@
 # 12. self#day_short and self#wday now also accept short, long, and num_as_string values for the month parameter.  
 # 13. Compressed self#day, self#day_short, and self#wday by using some assignment kung-fu.  
 # 14. Finally figured out how to compress self#dates in a manner similar to all the other methods---and by using another of Month's class methods too!  So they must be useful!  Although self#dates could still do with a little bit of a tidy-up...  
+# 15. self#dates looks better now.  I've managed to replace both the test and conversions into a single section of code.  
 
 class Month
   
@@ -91,18 +92,20 @@ class Month
   end
   
   def self.dates(day, month = Date.today.month, year = Date.today.year)
-    unconverted_day = day
-    day = day.to_s.capitalize
-    month = self.to_num(month)
-    if DAY_NAMES_SHORT.member?(day) || DAY_NAMES_LONG.member?(day) || (WEEK_DAY_NUMBERS.member?(day.to_i) && day =~ /\d/) || (WEEK_DAY_NUMBERS.member?(day.to_i) && unconverted_day.class == Fixnum)
-      list_of_dates = []
-      Date.new(year, month, 1).upto(Date.new(year, month, self.days(month, year))) do |date|
-        list_of_dates << date.mday if date.wday == self.wday(date.mday)
-      end
-      return list_of_dates
+    if e = DAY_NAMES_LONG.to_a.index(day)
+      weekday_number = e
+    elsif e = DAY_NAMES_SHORT.to_a.index(day)
+      weekday_number = e
+    elsif e = DAY_NAMES_LONG.to_a.member?(day.to_i)
+      weekday_number = e
     else
       return nil
     end
+    list_of_dates = []
+    Date.new(year, month, 1).upto(Date.new(year, month, self.days(month, year))) do |date|
+      list_of_dates << date.mday if date.wday == weekday_number
+    end
+    return list_of_dates
   end
   
   def self.day(date, month = Date.today.month, year = Date.today.year)
