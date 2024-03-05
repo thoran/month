@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.3.6
+# 0.3.7
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -16,6 +16,10 @@
 # 5. Producing some interesting attempts at consolidating the code.  See particularly MONTH_DAYS and self#days.  
 # 6. I somehow knew that I couldn't call a number...  
 # 7. self#days needs to check for dud data since a nil will be returned from the to_num lookup in that case...  
+# 8. I put an explicit return nil into self#days.  Not necessary, but a little clearer.  
+# 9. self#day now accepts short, long, and num_as_string values for the month parameter.  
+# 10. self#day is also much compressed by employing an array lookup.  
+# 11. self#day_short and self#wday are also now similarly compressed.  
 
 class Month
   
@@ -24,6 +28,7 @@ class Month
   MONTH_NAMES_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   MONTH_NAMES_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   MONTH_NUMBERS = 1..12
+  
   MONTH_DAYS = [31, Proc.new {|year| Date.leap?(year) ? 29 : 28}, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   
   MONTH_DAY_NUMBERS = 1..31
@@ -74,13 +79,15 @@ class Month
         when Fixnum; return e
         else; return e.call(year)
       end
+    else
+      return nil
     end
   end
   
   def self.days_in_month(month, year = Date.today.year)
     self.days(month, year)
   end
-  
+    
   def self.dates(day, month = Date.today.month, year = Date.today.year)
     unconverted_day = day
     day = day.to_s.capitalize
@@ -106,19 +113,10 @@ class Month
   
   def self.day(date, month = Date.today.month, year = Date.today.year)
     date = date.to_i
-    month = month.to_i
+    month = Month.to_num(month)
     year = year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
-      case Date.new(year, month, date).wday
-        when 0; return 'Sunday'
-        when 1; return 'Monday'
-        when 2; return 'Tuesday'
-        when 3; return 'Wednesday'
-        when 4; return 'Thursday'
-        when 5; return 'Friday'
-        when 6; return 'Saturday'
-        else return nil
-      end
+      return DAY_NAMES_LONG[Date.new(year, month, date).wday]
     else
       return nil
     end
@@ -133,16 +131,7 @@ class Month
     month = month.to_i
     year = year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
-      case Date.new(year, month, date).wday
-        when 0; return 'Sun'
-        when 1; return 'Mon'
-        when 2; return 'Tue'
-        when 3; return 'Wed'
-        when 4; return 'Thu'
-        when 5; return 'Fri'
-        when 6; return 'Sat'
-        else return nil
-      end
+      return DAY_NAMES_SHORT[Date.new(year, month, date).wday]
     else
       return nil
     end
@@ -153,16 +142,7 @@ class Month
     month = month.to_i
     year = year.to_i
     if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
-      case Date.new(year, month, date).wday
-        when 0; return 0
-        when 1; return 1
-        when 2; return 2
-        when 3; return 3
-        when 4; return 4
-        when 5; return 5
-        when 6; return 6
-        else return nil
-      end
+      return Date.new(year, month, date).wday
     else
       return nil
     end
