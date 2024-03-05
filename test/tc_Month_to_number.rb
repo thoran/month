@@ -3,13 +3,12 @@
 # Test case: Month#to_number.  
 # 
 # 20061002
-# 0.0.2
+# 0.2.0
 #
 # Changes: 
-# 1. I didn't test for different capitalizations before and it was only because of one failure that I picked up the failings of version 0.0.5 of the Month class.  
-# 2. I switched the order of the inputs to the tests back to the way that I'd done it before and back to the way it should have been done, since Test::Unit::TestCase#test_ assumes that the result comes first, whereas I thought it might be more natural to have it come second.  
+# 1. The class was incorrectly named as TC_Month_To_Num.  It didn't seem to cause any problems or conflicts with the other class TC_Month_To_Num however.  
 
-class TC_Month_To_Num < Test::Unit::TestCase
+class TC_Month_To_Number < Test::Unit::TestCase
   
   def test_long_capitalized
     assert_equal 1, Month.to_number('January')

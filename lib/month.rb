@@ -1,52 +1,35 @@
 # Month
 
 # 20061002
-# 0.1.4
+# 0.2.0
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
-# Discussion: It still May however be simpler, and faster, to use Date or Time to do the conversions, rather than doing it 'by hand' as I'm doing here...  
-
-# History: The beginnings of this were derived from some code from susy.rb.  
-
-# Changes: 
-# 1. I added the method dates which returns the dates for which it is a certain day.  
-# 2. As I was doing this I added an alias method #date, since #day and #mday don't seem very satisfying (even if it appears (too?) confusing)...  And yet I haven't used it!  Yet.  
-# 3. I added the method day, which returns the day of the week for a particular date.  
-# 4. I added the range of numeric days as a class variable to assist with the sanity test for the inputs in self#day.  
-# 5. Short days are also being tested now in self#dates.  
-# 6. I added class variables for the list of valid short and long day names for use with the other change which is to test for those in self#dates.  (Testing has given me several clues as to holes in this code!  Prior to testing too...)
-# 7. One can't use shorthand if statements if there is no else part!  
-# 8. Removed the alias Date#date, since it was a little ambiguous, but moreover it wasn't being used.  
-# 9. Converted day to a string before capitalizing, since day might be input as something other than a string and if so capitalize will fail.  
-# 10. The test in self#dates should have been an OR, not an AND!  
-# 11. Modified the sanity test in self#day to test the string value of year against the regex.  
-# 12. The test in self#dates wasn't thorough enough to cope with the change to accept weekday numbers.  It is possible for a nonsense string to become 0 when converted to an integer, so the comparison against @@number_weekdays would have failed.  Some of these sorts of tests could be cleaned up a bit?...  
-# 13. Added class variable @@number_weekdays!  
-# 14. Accommodated numeric inputs to self#dates.  
-# 15. The test for numbers didn't make sense in self#dates, since it only tested for the string representation of numbers, but not the number representation of numbers.  
-
 # Discussion: 
 # 1. Some of the later methods might be better moved to Date or another class...  
+
+# Changes: 
+# 1. Made the class variables class contants and did a little rearranging and renaming.  
 
 
 class Month
   
   require 'date'
   
-  @@long_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  @@short_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  @@number_months = 1..12
-  @@number_days = 1..31
-  @@day_names_short = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  @@day_names_long = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-  @@number_weekdays = 0..6
+  MONTH_NAMES_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  MONTH_NAMES_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  MONTH_NUMBERS = 1..12
+  
+  DAY_NAMES_LONG = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  DAY_NAMES_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  MONTH_DAY_NUMBERS = 1..31
+  WEEK_DAY_NUMBERS = 0..6
   
   def self.to_long(month)
     month = month.to_s
     case month
       when /\D/
-        if (@@short_months.to_a.member?(month.capitalize) || @@long_months.to_a.member?(month.capitalize))
+        if (MONTH_NAMES_SHORT.to_a.member?(month.capitalize) || MONTH_NAMES_LONG.to_a.member?(month.capitalize))
           case month.capitalize
             when 'Jan', 'January'; long_month = 'January'
             when 'Feb', 'February'; long_month = 'February'
@@ -66,7 +49,7 @@ class Month
           return nil
         end
       when /\d/
-        if @@number_months.to_a.member?(month.to_i)
+        if MONTH_NUMBERS.to_a.member?(month.to_i)
           case month
             when '1'; long_month = 'January'
             when '2'; long_month = 'February'
@@ -94,7 +77,7 @@ class Month
     month = month.to_s
     case month
       when /\D/
-        if (@@short_months.to_a.member?(month.capitalize) || @@long_months.to_a.member?(month.capitalize))
+        if (MONTH_NAMES_SHORT.to_a.member?(month.capitalize) || MONTH_NAMES_LONG.to_a.member?(month.capitalize))
           case month.capitalize
             when 'Jan', 'January'; short_month = 'Jan'
             when 'Feb', 'February'; short_month = 'Feb'
@@ -114,7 +97,7 @@ class Month
           return nil
         end
       when /\d/
-        if @@number_months.to_a.member?(month.to_i)
+        if MONTH_NUMBERS.to_a.member?(month.to_i)
           case month
             when '1'; short_month = 'Jan'
             when '2'; short_month = 'Feb'
@@ -143,7 +126,7 @@ class Month
     month = month.to_s
     case month
       when /\D/ 
-        if (@@short_months.to_a.member?(month.capitalize) || @@long_months.to_a.member?(month.capitalize))
+        if (MONTH_NAMES_SHORT.to_a.member?(month.capitalize) || MONTH_NAMES_LONG.to_a.member?(month.capitalize))
           case month.capitalize
             when 'Jan', 'January'; number_month = 1
             when 'Feb', 'February'; number_month = 2
@@ -163,7 +146,7 @@ class Month
           return nil
         end
       when /\d/
-        if @@number_months.to_a.member?(month.to_i)
+        if MONTH_NUMBERS.to_a.member?(month.to_i)
           return month.to_i
         else
           return nil
@@ -203,7 +186,7 @@ class Month
   def self.dates(day, month = Date.today.month, year = Date.today.year)
     unconverted_day = day
     day = day.to_s.capitalize
-    if @@day_names_short.member?(day) || @@day_names_long.member?(day) || (@@number_weekdays.member?(day.to_i) && day =~ /\d/) || (@@number_weekdays.member?(day.to_i) && unconverted_day.class == Fixnum)
+    if DAY_NAMES_SHORT.member?(day) || DAY_NAMES_LONG.member?(day) || (WEEK_DAY_NUMBERS.member?(day.to_i) && day =~ /\d/) || (WEEK_DAY_NUMBERS.member?(day.to_i) && unconverted_day.class == Fixnum)
       list_of_dates = []
       Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
         case date.wday
@@ -226,7 +209,7 @@ class Month
     date = date.to_i
     month = month.to_i
     year = year.to_i
-    if @@number_days.to_a.member?(date) && @@number_months.to_a.member?(month) && (year.to_s =~ /\d/)
+    if MONTH_DAY_NUMBERS.to_a.member?(date) && MONTH_NUMBERS.to_a.member?(month) && (year.to_s =~ /\d/)
       case Date.new(year, month, date).wday
         when 0; return 'Sunday'
         when 1; return 'Monday'

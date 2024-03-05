@@ -3,18 +3,18 @@
 # Test case: Month#days.  
 # 
 # 20061002
-# 0.0.2
+# 0.2.0
 #
 # Changes: 
-# 1. I didn't test for different capitalizations before and it was only because of one failure that I picked up the failings of version 0.0.5 of the Month class.  
-# 2. I switched the order of the inputs to the tests back to the way that I'd done it before and back to the way it should have been done, since Test::Unit::TestCase#test_ assumes that the result comes first, whereas I thought it might be more natural to have it come second.  
-# 3. I added in tests for the default year for when it is February.  
+# 1. Added a test to the the default February assertions to exclude that assertion for any year other than this.  
 
 class TC_Month_Days < Test::Unit::TestCase
   
   def test_long_capitalized
     assert_equal 31, Month.days('January')
-    assert_equal 28, Month.days('February')
+    if Date.today.year == 2006
+      assert_equal 28, Month.days('February')
+    end
     assert_equal 28, Month.days('February', 2007)
     assert_equal 29, Month.days('February', 2008)
     assert_equal 31, Month.days('March')
@@ -31,7 +31,9 @@ class TC_Month_Days < Test::Unit::TestCase
   
   def test_long_downcase
     assert_equal 31, Month.days('january')
-    assert_equal 28, Month.days('february')
+    if Date.today.year == 2006
+      assert_equal 28, Month.days('february')
+    end
     assert_equal 28, Month.days('february', 2007)
     assert_equal 29, Month.days('february', 2008)
     assert_equal 31, Month.days('march')
@@ -48,7 +50,9 @@ class TC_Month_Days < Test::Unit::TestCase
   
   def test_short_capitalized
     assert_equal 31, Month.days('Jan')
-    assert_equal 28, Month.days('Feb')
+    if Date.today.year == 2006
+      assert_equal 28, Month.days('Feb')
+    end
     assert_equal 28, Month.days('Feb', 2007)
     assert_equal 29, Month.days('Feb', 2008)
     assert_equal 31, Month.days('Mar')
@@ -65,7 +69,9 @@ class TC_Month_Days < Test::Unit::TestCase
   
   def test_short_downcase
     assert_equal 31, Month.days('jan')
-    assert_equal 28, Month.days('feb')
+    if Date.today.year == 2006
+      assert_equal 28, Month.days('feb')
+    end
     assert_equal 28, Month.days('feb', 2007)
     assert_equal 29, Month.days('feb', 2008)
     assert_equal 31, Month.days('mar')
@@ -82,7 +88,9 @@ class TC_Month_Days < Test::Unit::TestCase
   
   def test_num_as_num
     assert_equal 31, Month.days(1)
-    assert_equal 28, Month.days(2)
+    if Date.today.year == 2006
+      assert_equal 28, Month.days(2)
+    end
     assert_equal 28, Month.days(2, 2007)
     assert_equal 29, Month.days(2, 2008)
     assert_equal 31, Month.days(3)
@@ -99,7 +107,9 @@ class TC_Month_Days < Test::Unit::TestCase
   
   def test_num_as_string
     assert_equal 31, Month.days('1')
-    assert_equal 28, Month.days('2')
+    if Date.today.year == 2006
+      assert_equal 28, Month.days('2')
+    end
     assert_equal 28, Month.days('2', 2007)
     assert_equal 29, Month.days('2', 2008)
     assert_equal 31, Month.days('3')
