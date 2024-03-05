@@ -1,7 +1,7 @@
 # Month
 
 # 20061002
-# 0.1.1
+# 0.1.2
 
 # Description: Some code to do conversions of various formats for the representation of months.  The advantage that this has over the standard Date and Time classes is that this can handle just months and one doesn't have to specify a whole date or time in order to the conversions.  
 
@@ -14,6 +14,8 @@
 # 2. As I was doing this I added an alias method #date, since #day and #mday don't seem very satisfying (even if it appears (too?) confusing)...  And yet I haven't used it!  Yet.  
 # 3. I added the method day, which returns the day of the week for a particular date.  
 # 4. I added the range of numeric days as a class variable to assist with the sanity test for the inputs in self#day.  
+# 5. Short days are also being tested now in self#dates.  
+# 6. I added class variables for the list of valid short and long day names for use with the other change which is to test for those in self#dates.  (Testing has given me several clues as to holes in this code!  Prior to testing too...)
 
 # Discussion: 
 # 1. Some of the later methods might be better moved to Date or another class...  
@@ -32,7 +34,9 @@ class Month
   @@short_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   @@number_months = 1..12
   @@number_days = 1..31
-  
+  @@day_names_short = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  @@day_names_long = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    
   def self.to_long(month)
     month = month.to_s
     case month
@@ -193,19 +197,23 @@ class Month
   
   def self.dates(day, month = Date.today.month, year = Date.today.year)
     day = day.capitalize
-    list_of_dates = []
-    Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
-      case date.wday
-        when 0; 'Sunday' == day ? list_of_dates << date.mday
-        when 1; 'Monday' == day ? list_of_dates << date.mday
-        when 2; 'Tuesday' == day ? list_of_dates << date.mday
-        when 3; 'Wednesday' == day ? list_of_dates << date.mday
-        when 4; 'Thursday' == day ? list_of_dates << date.mday
-        when 5; 'Friday' == day ? list_of_dates << date.mday
-        when 6; 'Saturday' == day ? list_of_dates << date.mday
+    if @@day_names_short.member?(day) && @@day_names_long.member?(day)
+      list_of_dates = []
+      Date.new(year, month, 1).upto(Date.new(year, month, days(month, year))) do |date|
+        case date.wday
+          when 0; ('Sun' == day || 'Sunday' == day) ? list_of_dates << date.mday
+          when 1; ('Mon' == day || 'Monday' == day) ? list_of_dates << date.mday
+          when 2; ('Tue' == day || 'Tuesday' == day) ? list_of_dates << date.mday
+          when 3; ('Wed' == day || 'Wednesday' == day) ? list_of_dates << date.mday
+          when 4; ('Thu' == day || 'Thursday' == day) ? list_of_dates << date.mday
+          when 5; ('Fri' == day || 'Friday' == day) ? list_of_dates << date.mday
+          when 6; ('Sat' == day || 'Saturday' == day) ? list_of_dates << date.mday
+        end
       end
+      return list_of_dates
+    else
+      return nil
     end
-    return list_of_dates
   end
   
   def self.day(date, month = Date.today.month, year = Date.today.year)
