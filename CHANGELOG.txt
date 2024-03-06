@@ -1,0 +1,17 @@
+# 20240306
+
+0.10.0: Use a more conventional structure by removing the Month.rbl directory, get it working again, and create a gem.
+1. - Month.rbl directory.
+2. + Gemfile
+3. + month.rb.gemspec
+4. - lib/Array/lastX.rb: Not sure why this was here.
+5. - lib/Array/all_but_last.rb: Not sure why this was here.
+6. /ideas.txt/TODO.txt/
+7. ~ lib/Month.rb: Removed date, version, description, and changes to the gemspec and the CHANGELOG.
+8. + CHANGELOG.txt
+9. ~ lib/Month/Constants.rb: - VERSION
+10. + lib/Month/VERSION.rb
+11. /Fixnum/Integer/ (It's been that long!)
+12. /MiniTest/Minitest/ (It's been that long!)
+13. /assert_equal nil,/assert_nil/: Now ready for Minitest 6!
+14. ~ lib/Month.rb: + require 'Date/to_month'
